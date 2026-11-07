@@ -394,3 +394,14 @@ C:\Users\🙌>docker ps -a ↩
 CONTAINER ID   IMAGE                             COMMAND                   CREATED          STATUS                          PORTS                                     NAMES
 b0bb823b1b27   ubuntu                            "bash"                    51 minutes ago   Exited (0) About a minute ago                                             temp-container
 ```
+# 7. 수행 항목 체크LIST
+
+- [ ] Terminal 기본 명령어 실습
+- [ ] 권한 확인 및 변경
+- [ ] Docker 설치 및 기본 점검
+- [ ] Dockerfile 기본 운영 명령 수행
+- [ ] 포트
+- [ ] 마운트
+- [ ] 볼륨
+- [ ] Git 설정
+- [ ] GitHub 연동
