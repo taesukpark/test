@@ -1,5 +1,64 @@
 # 미션1 : 내 컴퓨터에 개발자용 '작업실' 꾸미기
 
+## 3. 터미널 조작 로그
+터미널로 명령어를 수행한 출력결과 정리
+```
+현재 위치 확인
+PS C:\Users\🙌> pwd ↩
+
+Path
+----
+C:\Users\🙌
+```
+```
+목록확인(숨김 파일 포함)
+PS C:\Users\🙌> wsl -d Ubuntu-22.04 -- ls -a ↩
+ .                   NTUSER.DAT
+ ..                  NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TM.blf
+ .config             NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000001.regtrans-ms
+ .copilot            NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000002.regtrans-ms
+ .docker             NetHood
+ .git                Pictures
+ .lesshst            PrintHood
+ .vscode             Recent
+ .vscode-shared     'Saved Games'
+ AppData             Searches
+'Application Data'   SendTo
+ Contacts            Templates
+ Cookies             Test261104
+ Desktop             Videos
+ Documents           ntuser.dat.LOG1
+ Downloads           ntuser.dat.LOG2
+ Favorites           ntuser.ini
+ Links               test1.txt
+'Local Settings'     vscode-remote-wsl
+ Music              '시작 메뉴'
+'My Documents'
+```
+
+```
+이동
+
+```
+```
+생성
+```
+```
+복사
+```
+```
+이동/이름변경
+```
+```
+삭제
+```
+```
+파일내용확인
+```
+```
+빈 파일 생성
+```
+
 ## 4. Docker 설치 및 기본 점검
 ### 4-1. Docker 버전 확인 결과를 기록한다.(docker --version)
 ```
