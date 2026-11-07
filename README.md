@@ -1,62 +1,149 @@
 # 미션1 : 내 컴퓨터에 개발자용 '작업실' 꾸미기
 
 ## 3. 터미널 조작 로그
-터미널로 명령어를 수행한 출력결과 정리
-```
+### 리눅스 터미널(Ubuntu)로 명령어를 수행한 출력결과 정리
+
 현재 위치 확인
-PS C:\Users\🙌> pwd ↩
+```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ pwd ↩
+/mnt/c/Users/🙌
+```
 
-Path
-----
-C:\Users\🙌
-```
-```
 목록확인(숨김 파일 포함)
-PS C:\Users\🙌> wsl -d Ubuntu-22.04 -- ls -a ↩
- .                   NTUSER.DAT
- ..                  NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TM.blf
- .config             NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000001.regtrans-ms
- .copilot            NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000002.regtrans-ms
- .docker             NetHood
- .git                Pictures
- .lesshst            PrintHood
- .vscode             Recent
- .vscode-shared     'Saved Games'
- AppData             Searches
-'Application Data'   SendTo
- Contacts            Templates
- Cookies             Test261104
- Desktop             Videos
- Documents           ntuser.dat.LOG1
- Downloads           ntuser.dat.LOG2
- Favorites           ntuser.ini
- Links               test1.txt
-'Local Settings'     vscode-remote-wsl
- Music              '시작 메뉴'
-'My Documents'
+```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls -a ↩
+ .                    NTUSER.DAT
+ ..                   NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TM.blf
+ .config              NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000001.regtrans-ms
+ .copilot             NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000002.regtrans-ms
+ .docker              NetHood
+ .git                 Pictures
+ .lesshst             PrintHood
+ .vscode              Recent
+ .vscode-shared       'Saved Games'
+ AppData              Searches
+ 'Application Data'   SendTo
+ Contacts             Templates
+ Cookies              Test261104
+ Desktop              Videos
+ Documents            ntuser.dat.LOG1
+ Downloads            ntuser.dat.LOG2
+ Favorites            ntuser.ini
+ Links                practice
+ 'Local Settings'     test1.txt
+ Music                vscode-remote-wsl
+ 'My Documents'       ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 ```
 
+이동(폴더)
 ```
-이동
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cd .. ↩
+🙌@GNIA-C202-J06:/mnt/c/Users$ cd ~ ↩
+🙌@GNIA-C202-J06:~$ cd /mnt/c/Users/🙌 ↩
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$
+```
 
+생성(폴더)
 ```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ mkdir AllinONE ↩
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
+ AllinONE
+ AppData
+ 'Application Data'
+ Contacts
+ Cookies
+ Desktop
+ Documents
+ Downloads
+ Favorites
+ Links
+ 'Local Settings'
+ Music
+ 'My Documents'
+ NTUSER.DAT
+ NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TM.blf
+ NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000001.regtrans-ms
+ NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000002.regtrans-ms
+(생략)
 ```
-생성
-```
-```
+
 복사
 ```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cp test1.txt test2.txt ↩
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
+(생략)
+ test1.txt
+ test2.txt
+ vscode-remote-wsl
+ ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
+복사된 파일과 원본 파일의 내용확인
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cat test1.txt
+��Welcome AllinOne!
+
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cat test2.txt
+��Welcome AllinOne!
+
 ```
-이동/이름변경
+
+파일 이동/이름변경
 ```
+파일 원본 조회
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
+ AllinONE
+ AppData
+(생략)
+ practice
+ test1.txt
+ test2.txt
+ vscode-remote-wsl
+ ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
+파일 이동/이름변경(test1.txt 파일을 test3.txt로 내용 이동 및 파일명 변경)
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ mv test3.txt test1.txt ↩
+파일 이동/이름변경 상황 조회
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
+ AllinONE
+ AppData
+(생략)
+ practice
+ test2.txt
+ test3.txt
+ vscode-remote-wsl
+ ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 ```
+
 삭제
 ```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ rm test2.txt ↩
+🙌@GNIA-C202-J06:/mnt/c/Users🙌$ ls ↩
+ AllinONE
+ AppData
+(생략)
+ practice
+ test1.txt
+ vscode-remote-wsl
+ ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 ```
+
 파일내용확인
 ```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cat test1.txt ↩
+��Welcome AllinOne!
 ```
+
 빈 파일 생성
+```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ touch test.txt ↩
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
+ AllinONE
+ AppData
+(생략)
+ practice
+ test.txt
+ test1.txt
+ vscode-remote-wsl
+ ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cat test.txt ↩
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$
 ```
 
 ## 4. Docker 설치 및 기본 점검
@@ -180,8 +267,10 @@ Server:
 수행명령과 출력 결과를 기술 문서에 남긴다.  
 
 ### 5-1. 이미지 : 다운로드/목록 확인(예: docker images)
-```
+
 ① 이미지 다운로드
+
+```
 C:\Users\🙌>docker pull ubuntu ↩
 Using default tag: latest
 latest: Pulling from library/ubuntu
@@ -192,8 +281,9 @@ Digest: sha256:6a06111c3b0a8600feadb270aec771dc239bf407b25625f93f44ab00e11f4d3c
 Status: Downloaded newer image for ubuntu:latest
 docker.io/library/ubuntu:latest
 ```
-```
+
 ② 이미지 목록확인
+```
 C:\Users\🙌>docker images ↩
                                                                                                    i Info →   U  In Use
 IMAGE                             ID             DISK USAGE   CONTENT SIZE   EXTRA
@@ -202,8 +292,11 @@ ubuntu:latest                     6a06111c3b0a        163MB         45.9MB
 ```
 
 ### 5-2. 컨테이너 : 실행/중지/목록 확인(예: docker ps, docker ps -a)
+
 ① 컨테이너 실행
+```
 docker run -d -p 8080:80
+```
 ② 컨테이너 중지
 ```
 C:\Users\🙌>docker stop be269efb98d5 ↩
@@ -220,15 +313,20 @@ C:\Users\lucidts1102>docker ps -a
 CONTAINER ID   IMAGE                             COMMAND                   CREATED       STATUS                      PORTS     NAMES
 be269efb98d5   docker/welcome-to-docker:latest   "/docker-entrypoint.…"   2 hours ago   Exited (0) 16 seconds ago             welcome-to-docker
 ```
-⑤ 컨테이너 중지후 실행중인 컨테이너 확인
+⑤ 컨테이너 중지후 실행중인 컨테이너 확인  
+```
 C:\Users\🙌>docker ps ↩
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
 ```
 ### 5-3. 운영 : 로그 확인(예: docker logs), 리소스 확인(예: docker stats)
-① 로그 확인
 
+① 로그 확인
+```
+```
 ② 리소스 확인
+```
+```
 
 ## 6. 컨테이너 실행 실습
 ### 6-1. hello-world 실행 성공을 기록한다.
@@ -237,9 +335,8 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 hello-world
 ```
 ### 6-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
-```
-• Ubuntu 컨테이너를 실행하고 내부 진입명령 C:\Users\🙌> wsl -d Ubuntu-22.04 ↩
-```
+
+• Ubuntu 컨테이너를 실행하고 내부 진입명령C:\Users\🙌> wsl -d Ubuntu-22.04 ↩
 ```
 PS C:\Users\🙌> wsl -d Ubuntu-22.04 ↩
 To run a command as administrator (user "root"), use "sudo <command>".
@@ -262,18 +359,34 @@ Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 6.18.54.1-microsoft-standard-WSL2 x86_6
      96MB
 ```
 
+• ls 명령실행 결과 기록
 ```
-• ls 명령실행 결과 기록 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
-```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
 <img width="785" height="232" alt="image" src="https://github.com/user-attachments/assets/a451cb6a-d8d0-4486-8d2e-a64cc53c4e01" />
 
 ```
-• echo 명령실행 결과 기록 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ echo hello-world ↩
+• echo 명령실행 결과 기록
 ```
-```
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ echo hello-world ↩
 hello-world
 ```
 
 ### 6-3. 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리한다.
+컨테이너 docker exec 실행시 컨테이너 목록을 조회해 보면 STATUS가 Up 상태임.
 ```
+C:\Users\🙌>docker exec -it temp-container bash ↩
+root@b0bb823b1b27:/# exit ↩
+C:\Users\🙌>docker ps ↩
+CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS                                     NAMES
+b0bb823b1b27   ubuntu    "bash"                    40 minutes ago   Up 40 minutes                                             temp-container
+```
+컨테이너 docker attach 실행시 컨테이너 목록을 조회해 보면 STATUS가 Exited상태임.
+```
+C:\Users\🙌>docker attach temp-container ↩
+root@b0bb823b1b27:/# exit ↩
+exit
 
+C:\Users\🙌>docker ps -a ↩
+CONTAINER ID   IMAGE                             COMMAND                   CREATED          STATUS                          PORTS                                     NAMES
+b0bb823b1b27   ubuntu                            "bash"                    51 minutes ago   Exited (0) About a minute ago                                             temp-container
+```
