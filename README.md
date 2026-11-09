@@ -37,16 +37,16 @@
 
 ### 2-3. 이동(폴더)
 ```
-🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cd .. ↩
-🙌@GNIA-C202-J06:/mnt/c/Users$ cd ~ ↩
-🙌@GNIA-C202-J06:~$ cd /mnt/c/Users/🙌 ↩
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cd .. ↩ 🙌$의 상위폴더로 이동
+🙌@GNIA-C202-J06:/mnt/c/Users$ cd ~ ↩ 현사용자의 홈 디렉토리로 이동
+🙌@GNIA-C202-J06:~$ cd /mnt/c/Users/🙌 ↩ /mnt/c/Users/🙌$로 이동
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$
 ```
 
 ### 2-4. 생성(폴더)
 ```
-🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ mkdir AllinONE ↩
-🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ mkdir AllinONE ↩ 현재 폴더에 AllinONE 폴더 생성
+🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩ 현재 폴더 목록을 조회해서 mkdir 결과 확인
  AllinONE
  AppData
  'Application Data'
@@ -146,10 +146,64 @@
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$
 ```
 ## 3. 권한 실습 및 증거 기록
-권한을 확인/변경하는 명령을 수행하고, 변경 전/후 비교하기
-(최소 요구 : 파일 1개, 디렉토리 1개에 대해 권한 변경 실험을 수행)
+최소 요구 : 파일 1개(test.txt), 디렉토리 1개(AllinONE)에 대해 권한 변경 실험을 수행
+### 3-1. 권한을 확인/변경하는 명령을 수행
+```
+• 권한 확인
+lucidts1102@GNIA-C202-J06:~$ pwd ↩
+/home/lucidts1102
+lucidts1102@GNIA-C202-J06:~$ ls -al ↩
+total 32
+drwxr-x--- 4 lucidts1102 lucidts1102 4096 Nov  8 02:31 .
+drwxr-xr-x 3 root        root        4096 Nov  8 01:58 ..
+-rw------- 1 lucidts1102 lucidts1102  775 Nov  8 05:08 .bash_history
+-rw-r--r-- 1 lucidts1102 lucidts1102  220 Nov  8 01:58 .bash_logout
+-rw-r--r-- 1 lucidts1102 lucidts1102 3771 Nov  8 01:58 .bashrc
+drwxr-x--- 4 lucidts1102 lucidts1102 4096 Nov  8 01:59 .cache
+drwxr-x--- 3 lucidts1102 lucidts1102 4096 Nov  8 01:59 .config
+-rw-rw-r-- 1 lucidts1102 lucidts1102    0 Nov  9 20:32 .motd_shown
+-rw-r--r-- 1 lucidts1102 lucidts1102  807 Nov  8 01:58 .profile
+lucidts1102@GNIA-C202-J06:~$ mkdir AllinONE ↩
+lucidts1102@GNIA-C202-J06:~$ ls -l ↩
+total 4
+drwxr-xr-x 2 lucidts1102 lucidts1102 4096 Nov  9 20:50 AllinONE
+lucidts1102@GNIA-C202-J06:~$ cd AllinONE ↩
+lucidts1102@GNIA-C202-J06:~/AllinONE$ ls ↩
+lucidts1102@GNIA-C202-J06:~/AllinONE$ touch test.txt ↩
+lucidts1102@GNIA-C202-J06:~/AllinONE$ ls -l ↩
+total 0
+-rw-r--r-- 1 lucidts1102 lucidts1102 0 Nov  9 20:52 test.txt
 
+• 권한 변경(디렉토리AllinONE 권한을 755에서 765로 변경해 보기)
+lucidts1102@GNIA-C202-J06:~$ ls ↩
+AllinONE
+lucidts1102@GNIA-C202-J06:~$ ls -l ↩
+total 4
+drwxr-xr-x 2 lucidts1102 lucidts1102 4096 Nov  9 20:52 AllinONE
+lucidts1102@GNIA-C202-J06:~$ chmod 765 AllinONE ↩
+lucidts1102@GNIA-C202-J06:~$ ls -l ↩
+total 4
+drwxrw-r-x 2 lucidts1102 lucidts1102 4096 Nov  9 20:52 AllinONE
 
+• 권한 변경(test.txt 파일에 대한 권한을 644에서 744로 변경해 보기)
+lucidts1102@GNIA-C202-J06:~$ cd AllinONE
+lucidts1102@GNIA-C202-J06:~/AllinONE$ ls -l
+total 0
+-rw-r--r-- 1 lucidts1102 lucidts1102 0 Nov  9 20:52 test.txt
+lucidts1102@GNIA-C202-J06:~/AllinONE$ chmod 744 test.txt
+lucidts1102@GNIA-C202-J06:~/AllinONE$ ls -l
+total 0
+-rwxr--r-- 1 lucidts1102 lucidts1102 0 Nov  9 20:52 test.txt
+```
+### 3-2. 권한변경 전/후 비교하기
+```
+• chmod -v옵션으로 test.txt 파일에 대한 변경전 권한과 변경후 권한을 메시지로 확인
+lucidts1102@GNIA-C202-J06:~/AllinONE$  chmod -v 651 test.txt
+mode of 'test.txt' changed from 0744 (rwxr--r--) to 0651 (rw-r-x--x)
+```
+```
+• 
+```
 ## 4. Docker 설치 및 기본 점검
 ### 4-1. Docker 버전 확인 결과를 기록한다.(docker --version)
 ```
