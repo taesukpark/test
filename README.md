@@ -1,15 +1,33 @@
 # 미션1 : 내 컴퓨터에 개발자용 '작업실' 꾸미기
 
-## 2. 터미널 조작 로그
+## 1. 실행환경
+- OS : Ubuntu
+- Shell : bash
+- Docker : 29.9.2
+- Git : 2.56.0.windows.4
+
+## 2. 수행 항목 체크LIST
+
+- [x] Terminal 기본 명령어 실습
+- [x] 권한 확인 및 변경 실습
+- [x] Docker 설치 및 기본 점검
+- [x] Dockerfile 기본 운영 명령 수행
+- [x] 포트 매핑 접속(2회)
+- [x] 바인드 마운트 반영
+- [x] 볼륨 영속성
+- [x] Git 설정
+- [x] VSCode GitHub 연동
+
+## 3. 터미널 조작 로그
 ### 리눅스 터미널(Ubuntu)로 명령어를 수행한 출력결과 정리
 
-### 2-1. 현재 위치 확인
+### 3-1. 현재 위치 확인
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ pwd ↩
 /mnt/c/Users/🙌
 ```
 
-### 2-2. 목록확인(숨김 파일 포함)
+### 3-2. 목록확인(숨김 파일 포함)
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls -a ↩
  .                    NTUSER.DAT
@@ -35,7 +53,7 @@
  'My Documents'       ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 ```
 
-### 2-3. 이동(폴더)
+### 3-3. 이동(폴더)
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cd .. ↩ 🙌$의 상위폴더로 이동
 🙌@GNIA-C202-J06:/mnt/c/Users$ cd ~ ↩ 현사용자의 홈 디렉토리로 이동
@@ -43,7 +61,7 @@
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$
 ```
 
-### 2-4. 생성(폴더)
+### 3-4. 생성(폴더)
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ mkdir AllinONE ↩ 현재 폴더에 AllinONE 폴더 생성
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩ 현재 폴더 목록을 조회해서 mkdir 결과 확인
@@ -67,7 +85,7 @@
 (생략)
 ```
 
-### 2-5. 복사
+### 3-5. 복사
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cp test1.txt test2.txt ↩
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
@@ -85,7 +103,7 @@
 
 ```
 
-### 2-6. 파일 이동/이름변경
+### 3-6. 파일 이동/이름변경
 ```
 파일 원본 조회
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
@@ -111,7 +129,7 @@
  ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 ```
 
-### 2-7. 삭제
+### 3-7. 삭제
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ rm test2.txt ↩
 🙌@GNIA-C202-J06:/mnt/c/Users🙌$ ls ↩
@@ -124,13 +142,13 @@
  ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 ```
 
-### 2-8. 파일내용확인
+### 3-8. 파일내용확인
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cat test1.txt ↩
 ��Welcome AllinOne!
 ```
 
-### 2-9. 빈 파일 생성
+### 3-9. 빈 파일 생성
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ touch test.txt ↩
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
@@ -145,9 +163,9 @@
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ cat test.txt ↩
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$
 ```
-## 3. 권한 실습 및 증거 기록
+## 4. 권한 실습 및 증거 기록
 최소 요구 : 파일 1개(test.txt), 디렉토리 1개(AllinONE)에 대해 권한 변경 실험을 수행
-### 3-1. 권한을 확인/변경하는 명령을 수행
+### 4-1. 권한을 확인/변경하는 명령을 수행
 ```
 • 권한 확인
 🙌@GNIA-C202-J06:~$ pwd ↩
@@ -209,15 +227,15 @@ total 0
 -rwxr--r-- 1 🙌 🙌 0 Nov  9 20:52 test.txt
 -rwxr--r-- 1 🙌 🙌 0 Nov  9 23:14 test1.txt
 ```
-### 3-2. 권한변경 전/후 비교하기
+### 4-2. 권한변경 전/후 비교하기
 ```
 • chmod -v옵션으로 test.txt 파일에 대한 변경전 권한과 변경후 권한을 메시지로 확인
 🙌@GNIA-C202-J06:~/AllinONE$  chmod -v 751 test.txt ↩ 권한모드를 751로 바꾸면서 변경 전/후 나타냄
 mode of 'test.txt' changed from 0744 (rwxr--r--) to 0751 (rwxr-x--x)
 ```
 
-## 4. Docker 설치 및 기본 점검
-### 4-1. Docker 버전 확인 결과를 기록한다.(docker --version)
+## 5. Docker 설치 및 기본 점검
+### 5-1. Docker 버전 확인 결과를 기록한다.(docker --version)
 ```
 C:\Users\🙌>docker version ↩
 Client:
@@ -248,7 +266,7 @@ Server: Docker Desktop 4.97.0 (244584)
   Version:          0.19.0
   GitCommit:        de40ad0
 ```
-### 4-2. Docker 데몬 동작 여부 확인 결과를 기록한다. (docker info 또는 동등 점검)
+### 5-2. Docker 데몬 동작 여부 확인 결과를 기록한다. (docker info 또는 동등 점검)
 데몬이 **정상동작**일 경우 Client와 Server 정보가 모두 출력된다.
 ```
 C:\Users\🙌>docker version ↩
@@ -388,10 +406,10 @@ Server:
  Firewall Backend: iptables
 ```
 
-## 5. Docker 기본 운영 명령 수행
+## 6. Docker 기본 운영 명령 수행
 수행명령과 출력 결과를 기술 문서에 남긴다.  
 
-### 5-1. 이미지 : 다운로드/목록 확인(예: docker images)
+### 6-1. 이미지 : 다운로드/목록 확인(예: docker images)
 
 ① 이미지 다운로드
 
@@ -415,7 +433,7 @@ nginx:latest                      165ddde8751e        243MB         66.8MB    U
 python:latest                     8c9a3bf2d6de       1.65GB          437MB    U
 ubuntu:latest                     6a06111c3b0a        163MB         45.9MB    U
 ```
-### 5-2. 컨테이너 : 실행/중지/목록 확인(예: docker ps, docker ps -a)
+### 6-2. 컨테이너 : 실행/중지/목록 확인(예: docker ps, docker ps -a)
 ```
 ① 컨테이너 실행
 🙌2@GNIA-C202-J06:~$ docker run -d --name welcome-to-docker -p 8088:80 nginx ↩
@@ -441,7 +459,7 @@ e38c12e8bc33   nginx     "/docker-entrypoint.…"   2 hours ago      Exited (0) 
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 
-### 5-3. 운영 : 로그 확인(예: docker logs), 리소스 확인(예: docker stats)
+### 6-3. 운영 : 로그 확인(예: docker logs), 리소스 확인(예: docker stats)
 ```
 ① 로그 확인
 🙌@GNIA-C202-J06:~$ docker logs test-container ↩
@@ -492,13 +510,13 @@ e38c12e8bc33   test-container   0.00%     28.18MiB / 15.25GiB   0.18%     1.3kB 
 Ctrl+C ↩ test-container에서 빠져나오기
 ```
 
-## 6. 컨테이너 실행 실습
-### 6-1. hello-world 실행 성공을 기록한다.
+## 7. 컨테이너 실행 실습
+### 7-1. hello-world 실행 성공을 기록한다.
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ echo hello-world ↩
 hello-world
 ```
-### 6-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
+### 7-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
 
 • Ubuntu 컨테이너를 실행하고 내부 진입명령C:\Users\🙌> wsl -d Ubuntu ↩
 ```
@@ -535,7 +553,7 @@ Welcome to Ubuntu LTS (GNU/Linux 6.18.54.1-microsoft-standard-WSL2 x86_64)
 hello-world
 ```
 
-### 6-3. 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리한다.
+### 7-3. 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리한다.
 컨테이너 docker exec 실행시 컨테이너 목록을 조회해 보면 STATUS가 Up 상태임.
 ```
 C:\Users\🙌>docker exec -it temp-container bash ↩
@@ -554,14 +572,3 @@ C:\Users\🙌>docker ps -a ↩
 CONTAINER ID   IMAGE                             COMMAND                   CREATED          STATUS                          PORTS                                     NAMES
 b0bb823b1b27   ubuntu                            "bash"                    51 minutes ago   Exited (0) About a minute ago                                             temp-container
 ```
-# 7. 수행 항목 체크LIST
-
-- [ ] Terminal 기본 명령어 실습
-- [ ] 권한 확인 및 변경
-- [ ] Docker 설치 및 기본 점검
-- [ ] Dockerfile 기본 운영 명령 수행
-- [ ] 포트
-- [ ] 마운트
-- [ ] 볼륨
-- [ ] Git 설정
-- [ ] GitHub 연동
