@@ -12,7 +12,7 @@
 - [x] 권한 확인 및 변경 실습
 - [x] Docker 설치 및 기본 점검
 - [x] Dockerfile 기본 운영 명령 수행
-- [x] 포트 매핑 접속(2회)
+- [x] 포트 매핑 접속
 - [x] 바인드 마운트 반영
 - [x] 볼륨 영속성
 - [x] Git 설정
@@ -572,14 +572,17 @@ C:\Users\🙌>docker ps -a ↩
 CONTAINER ID   IMAGE                             COMMAND                   CREATED          STATUS                          PORTS                                     NAMES
 b0bb823b1b27   ubuntu                            "bash"                    51 minutes ago   Exited (0) About a minute ago                                             temp-container
 ```
-## 8. 포트 매핑 및 접속 증거
+## 8. 기존 Dockerfile 기반 커스텀 이미지 제작
+
+
+## 9. 포트 매핑 및 접속 증거
 
 ```
-lucidts1102@GNIA-C202-J06:~$ docker ps -a
+🙌@GNIA-C202-J06:~$ docker ps -a ↩
 CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS         PORTS                                     NAMES
 b73b20e8498e   nginx     "/docker-entrypoint.…"   2 hours ago   Up 8 minutes   0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
 e38c12e8bc33   nginx     "/docker-entrypoint.…"   4 hours ago   Up 8 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   test-container
-lucidts1102@GNIA-C202-J06:~$ curl -v http://localhost:8080
+🙌@GNIA-C202-J06:~$ curl -v http://localhost:8080 ↩ -v 옵션을 사용하면 요청(Request)과 응답(Response) 과정을 모두 볼 수 있어 포트 매핑이 성공했다는 강력한 증거
 * Host localhost:8080 was resolved.
 * IPv6: ::1
 * IPv4: 127.0.0.1
@@ -592,7 +595,7 @@ lucidts1102@GNIA-C202-J06:~$ curl -v http://localhost:8080
 > Accept: */*
 >
 * Request completely sent off
-< HTTP/1.1 200 OK
+< HTTP/1.1 200 OK   <-- 연결 성공 확인!
 < Server: nginx/1.31.8
 < Date: Mon, 09 Nov 2026 22:08:20 GMT
 < Content-Type: text/html
@@ -632,4 +635,11 @@ security features and capabilities please refer to
 * Connection #0 to host localhost:8080 left intact
 ```
 <img width="498" height="300" alt="image" src="https://github.com/user-attachments/assets/aa7afc07-5a74-4869-996b-3d6288992009" />
+
+## 10. Docker 볼륨 영속성 검증
+
+## 11. Git 설정 및 GitHub 연동
+
+## 12. 보안 및 개인정보 보호
+
 
