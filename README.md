@@ -219,12 +219,67 @@ mode of 'test.txt' changed from 0744 (rwxr--r--) to 0651 (rw-r-x--x)
 ## 4. Docker 설치 및 기본 점검
 ### 4-1. Docker 버전 확인 결과를 기록한다.(docker --version)
 ```
-C:\Users\🙌> docker --version ↩
-Docker version 29.9.2, build a82e528
+C:\Users\🙌>docker version ↩
+Client:
+ Version:           29.9.2
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        a82e528
+ Built:             Tue Oct 20 19:44:07 2026
+ OS/Arch:           windows/amd64
+ Context:           desktop-linux
+
+Server: Docker Desktop 4.97.0 (244584)
+ Engine:
+  Version:          29.9.2
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       0367cbe
+  Built:            Tue Oct 20 18:45:02 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
 ```
 ### 4-2. Docker 데몬 동작 여부 확인 결과를 기록한다. (docker info 또는 동등 점검)
 데몬이 **정상동작**일 경우 Client와 Server 정보가 모두 출력된다.
 ```
+C:\Users\🙌>docker version ↩
+Client:
+ Version:           29.9.2
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        a82e528
+ Built:             Tue Oct 20 19:44:07 2026
+ OS/Arch:           windows/amd64
+ Context:           desktop-linux
+
+Server: Docker Desktop 4.97.0 (244584)
+ Engine:
+  Version:          29.9.2
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       0367cbe
+  Built:            Tue Oct 20 18:45:02 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+
 C:\Users\🙌>docker info ↩
 Client:
  Version:    29.9.2
@@ -278,11 +333,11 @@ Client:
     Path:     C:\Program Files\Docker\cli-plugins\docker-scout.exe
 
 Server:
- Containers: 1
-  Running: 1
+ Containers: 6
+  Running: 0
   Paused: 0
-  Stopped: 0
- Images: 1
+  Stopped: 6
+ Images: 5
  Server Version: 29.9.2
  Storage Driver: overlayfs
   driver-type: io.containerd.snapshotter.v1
@@ -344,11 +399,8 @@ Server:
 C:\Users\🙌>docker pull ubuntu ↩
 Using default tag: latest
 latest: Pulling from library/ubuntu
-f3f25b84a7d7: Pull complete
-edafa32f5d9e: Pull complete
-21594acc2d8b: Download complete
 Digest: sha256:6a06111c3b0a8600feadb270aec771dc239bf407b25625f93f44ab00e11f4d3c
-Status: Downloaded newer image for ubuntu:latest
+Status: Image is up to date for ubuntu:latest
 docker.io/library/ubuntu:latest
 ```
 
@@ -358,44 +410,48 @@ C:\Users\🙌>docker images ↩
                                                                                                    i Info →   U  In Use
 IMAGE                             ID             DISK USAGE   CONTENT SIZE   EXTRA
 docker/welcome-to-docker:latest   c4d56c24da4f       22.2MB         6.03MB    U
-ubuntu:latest                     6a06111c3b0a        163MB         45.9MB
+hello-world:latest                c567b231f656       25.9kB         9.49kB    U
+nginx:latest                      165ddde8751e        243MB         66.8MB    U
+python:latest                     8c9a3bf2d6de       1.65GB          437MB    U
+ubuntu:latest                     6a06111c3b0a        163MB         45.9MB    U
 ```
-
+```
 ### 5-2. 컨테이너 : 실행/중지/목록 확인(예: docker ps, docker ps -a)
 
 ① 컨테이너 실행
-```
-docker run -d -p 8080:80
-```
-② 컨테이너 중지
-```
-C:\Users\🙌>docker stop be269efb98d5 ↩
-be269efb98d5
-```
-③ 컨테이너 중지전 목록 확인
-```C:\Users\🙌>docker ps -a ↩
+
+docker run 
+
+②③ 컨테이너 중지전 목록 확인
+C:\Users\🙌>docker ps -a ↩ 모든 목록 확인중 be269efb98d5의 status가 Up상태임을 확인
 CONTAINER ID   IMAGE                             COMMAND                   CREATED       STATUS       PORTS                                     NAMES
 be269efb98d5   docker/welcome-to-docker:latest   "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
-```
+
+③ 컨테이너 중지
+
+C:\Users\🙌>docker stop be269efb98d5 ↩ be269efb98d5라는 컨테이너명 중지
+be269efb98d5
+
+
 ④ 컨테이너 중지후 목록 확인
-```
-C:\Users\lucidts1102>docker ps -a
+
+C:\Users\lucidts1102>docker ps -a ↩ status가 Exited (0)인 중지컨테이너를 포함한 모든 목록 확인
 CONTAINER ID   IMAGE                             COMMAND                   CREATED       STATUS                      PORTS     NAMES
 be269efb98d5   docker/welcome-to-docker:latest   "/docker-entrypoint.…"   2 hours ago   Exited (0) 16 seconds ago             welcome-to-docker
-```
+
 ⑤ 컨테이너 중지후 실행중인 컨테이너 확인  
-```
-C:\Users\🙌>docker ps ↩
+
+C:\Users\🙌>docker ps ↩ 현재 실행중인 컨테어너 목록 확인
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
-```
+
 ### 5-3. 운영 : 로그 확인(예: docker logs), 리소스 확인(예: docker stats)
 
 ① 로그 확인
-```
-```
+
+
 ② 리소스 확인
-```
+
 ```
 
 ## 6. 컨테이너 실행 실습
