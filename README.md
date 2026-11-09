@@ -212,8 +212,8 @@ total 0
 ### 3-2. 권한변경 전/후 비교하기
 ```
 • chmod -v옵션으로 test.txt 파일에 대한 변경전 권한과 변경후 권한을 메시지로 확인
-🙌@GNIA-C202-J06:~/AllinONE$  chmod -v 651 test.txt ↩ 권한모드를 651로 바꾸면서 변경 전/후 나타냄
-mode of 'test.txt' changed from 0744 (rwxr--r--) to 0651 (rw-r-x--x)
+🙌@GNIA-C202-J06:~/AllinONE$  chmod -v 751 test.txt ↩ 권한모드를 751로 바꾸면서 변경 전/후 나타냄
+mode of 'test.txt' changed from 0744 (rwxr--r--) to 0751 (rwxr-x--x)
 ```
 
 ## 4. Docker 설치 및 기본 점검
@@ -415,43 +415,81 @@ nginx:latest                      165ddde8751e        243MB         66.8MB    U
 python:latest                     8c9a3bf2d6de       1.65GB          437MB    U
 ubuntu:latest                     6a06111c3b0a        163MB         45.9MB    U
 ```
-```
 ### 5-2. 컨테이너 : 실행/중지/목록 확인(예: docker ps, docker ps -a)
-
+```
 ① 컨테이너 실행
+🙌2@GNIA-C202-J06:~$ docker run -d --name welcome-to-docker -p 8088:80 nginx ↩
+b73b20e8498ed0e7e278e506306f0b84908a375c798f17be52643bfcd9ecbcc5
 
-docker run 
-
-②③ 컨테이너 중지전 목록 확인
-C:\Users\🙌>docker ps -a ↩ 모든 목록 확인중 be269efb98d5의 status가 Up상태임을 확인
-CONTAINER ID   IMAGE                             COMMAND                   CREATED       STATUS       PORTS                                     NAMES
-be269efb98d5   docker/welcome-to-docker:latest   "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
-
+② 컨테이너 중지전 목록 확인
+🙌@GNIA-C202-J06:~$ docker ps -a ↩ 모든 목록 확인중b73b20e8498e의 status가 Up상태임을 확인
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS                                     NAMES
+b73b20e8498e   nginx     "/docker-entrypoint.…"   7 minutes ago   Up 7 minutes                0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
+e38c12e8bc33   nginx     "/docker-entrypoint.…"   2 hours ago     Exited (0) 10 seconds ago                                             test-container
 ③ 컨테이너 중지
-
-C:\Users\🙌>docker stop be269efb98d5 ↩ be269efb98d5라는 컨테이너명 중지
-be269efb98d5
-
+🙌@GNIA-C202-J06:~$ docker stop welcome-to-docker ↩ welcome-to-docker라는 명칭의 컨테이너 중지
+welcome-to-docker
 
 ④ 컨테이너 중지후 목록 확인
-
-C:\Users\lucidts1102>docker ps -a ↩ status가 Exited (0)인 중지컨테이너를 포함한 모든 목록 확인
-CONTAINER ID   IMAGE                             COMMAND                   CREATED       STATUS                      PORTS     NAMES
-be269efb98d5   docker/welcome-to-docker:latest   "/docker-entrypoint.…"   2 hours ago   Exited (0) 16 seconds ago             welcome-to-docker
+🙌@GNIA-C202-J06:~$ docker ps -a ↩ status가 Exited (0)인 중지컨테이너를 포함한 모든 목록 확인
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+b73b20e8498e   nginx     "/docker-entrypoint.…"   10 minutes ago   Exited (0) 21 seconds ago             welcome-to-docker
+e38c12e8bc33   nginx     "/docker-entrypoint.…"   2 hours ago      Exited (0) 3 minutes ago              test-container
 
 ⑤ 컨테이너 중지후 실행중인 컨테이너 확인  
-
-C:\Users\🙌>docker ps ↩ 현재 실행중인 컨테어너 목록 확인
+🙌@GNIA-C202-J06:~$ docker ps ↩ 현재 실행중인 컨테어너 목록 확인
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
-
+```
 
 ### 5-3. 운영 : 로그 확인(예: docker logs), 리소스 확인(예: docker stats)
-
+```
 ① 로그 확인
-
+🙌@GNIA-C202-J06:~$ docker logs test-container ↩
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2026/11/09 18:25:54 [notice] 1#1: using the "epoll" event method
+2026/11/09 18:25:54 [notice] 1#1: nginx/1.31.8
+2026/11/09 18:25:54 [notice] 1#1: built by gcc 14.2.0 (Debian 14.2.0-19)
+2026/11/09 18:25:54 [notice] 1#1: OS: Linux 6.18.54.1-microsoft-standard-WSL2
+2026/11/09 18:25:54 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2026/11/09 18:25:54 [notice] 1#1: start worker processes
+2026/11/09 18:25:54 [notice] 1#1: start worker process 29
+2026/11/09 18:25:54 [notice] 1#1: start worker process 30
+2026/11/09 18:25:54 [notice] 1#1: start worker process 31
+2026/11/09 18:25:54 [notice] 1#1: start worker process 32
+2026/11/09 18:25:54 [notice] 1#1: start worker process 33
+2026/11/09 18:25:54 [notice] 1#1: start worker process 34
+2026/11/09 18:25:54 [notice] 1#1: start worker process 35
+2026/11/09 18:25:54 [notice] 1#1: start worker process 36
+2026/11/09 18:25:54 [notice] 1#1: start worker process 37
+2026/11/09 18:25:54 [notice] 1#1: start worker process 38
+2026/11/09 18:25:54 [notice] 1#1: start worker process 39
+2026/11/09 18:25:54 [notice] 1#1: start worker process 40
+2026/11/09 18:25:54 [notice] 1#1: start worker process 41
+2026/11/09 18:25:54 [notice] 1#1: start worker process 42
+2026/11/09 18:25:54 [notice] 1#1: start worker process 43
+2026/11/09 18:25:54 [notice] 1#1: start worker process 44
+2026/11/09 18:25:54 [notice] 1#1: start worker process 45
+2026/11/09 18:25:54 [notice] 1#1: start worker process 46
+2026/11/09 18:25:54 [notice] 1#1: start worker process 47
+2026/11/09 18:25:54 [notice] 1#1: start worker process 48
+2026/11/09 18:25:54 [notice] 1#1: start worker process 49
+2026/11/09 18:25:54 [notice] 1#1: start worker process 50
+2026/11/09 18:25:54 [notice] 1#1: start worker process 51
+2026/11/09 18:25:54 [notice] 1#1: start worker process 52
 
 ② 리소스 확인
-
+🙌@GNIA-C202-J06:~$ docker stats ↩
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O        BLOCK I/O       PIDS
+e38c12e8bc33   test-container   0.00%     28.18MiB / 15.25GiB   0.18%     1.3kB / 126B   19MB / 16.4kB   26
+Ctrl+C ↩ test-container에서 빠져나오기
 ```
 
 ## 6. 컨테이너 실행 실습
@@ -462,13 +500,13 @@ hello-world
 ```
 ### 6-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
 
-• Ubuntu 컨테이너를 실행하고 내부 진입명령C:\Users\🙌> wsl -d Ubuntu-22.04 ↩
+• Ubuntu 컨테이너를 실행하고 내부 진입명령C:\Users\🙌> wsl -d Ubuntu ↩
 ```
-PS C:\Users\🙌> wsl -d Ubuntu-22.04 ↩
+PS C:\Users\🙌> wsl -d Ubuntu ↩
 To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
-Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 6.18.54.1-microsoft-standard-WSL2 x86_64)
+Welcome to Ubuntu LTS (GNU/Linux 6.18.54.1-microsoft-standard-WSL2 x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
