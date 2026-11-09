@@ -572,3 +572,64 @@ C:\Users\🙌>docker ps -a ↩
 CONTAINER ID   IMAGE                             COMMAND                   CREATED          STATUS                          PORTS                                     NAMES
 b0bb823b1b27   ubuntu                            "bash"                    51 minutes ago   Exited (0) About a minute ago                                             temp-container
 ```
+## 8. 포트 매핑 및 접속 증거
+
+```
+lucidts1102@GNIA-C202-J06:~$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS         PORTS                                     NAMES
+b73b20e8498e   nginx     "/docker-entrypoint.…"   2 hours ago   Up 8 minutes   0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
+e38c12e8bc33   nginx     "/docker-entrypoint.…"   4 hours ago   Up 8 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   test-container
+lucidts1102@GNIA-C202-J06:~$ curl -v http://localhost:8080
+* Host localhost:8080 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:8080...
+* Established connection to localhost (::1 port 8080) from ::1 port 44130
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/8.18.0
+> Accept: */*
+>
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Server: nginx/1.31.8
+< Date: Mon, 09 Nov 2026 22:08:20 GMT
+< Content-Type: text/html
+< Content-Length: 896
+< Last-Modified: Wed, 21 Oct 2026 14:24:51 GMT
+< Connection: keep-alive
+< ETag: "6ad8cb33-380"
+< Accept-Ranges: bytes
+<
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy,
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+* Connection #0 to host localhost:8080 left intact
+```
+<img width="498" height="300" alt="image" src="https://github.com/user-attachments/assets/aa7afc07-5a74-4869-996b-3d6288992009" />
+
