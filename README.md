@@ -590,7 +590,8 @@ d-----      2026-11-11   오후 3:25                my-web
 PS C:\Users\lucidts1102> cd my-web ↩
 PS C:\Users\lucidts1102\my-web> echo "Hi! This is my first image." > test.html ↩
 PS C:\Users\lucidts1102\my-web> cat test.html ↩
-Hi! This is my first image..↩
+Hi! This is my first image.
+
 ```
 
 
