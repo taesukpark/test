@@ -553,7 +553,7 @@ Welcome to Ubuntu LTS (GNU/Linux 6.18.54.1-microsoft-standard-WSL2 x86_64)
 hello-world
 ```
 
-### 7-3. 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리한다.
+### 7-3. 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리
 ① 컨테이너 docker exec 실행시 컨테이너 목록을 조회해 보면 STATUS가 Up 상태임.
 ```
 C:\Users\🙌>docker exec -it temp-container bash ↩
@@ -660,8 +660,38 @@ security features and capabilities please refer to
 ## 10. Docker 볼륨 영속성 검증
 
 ### 10-1. 바운드 마운트 : 실행명령 + 호스트 변경 전/후 비교
+
+① 내 컴퓨터에 폴더와 파일 생성
+```
+PS C:\Users\lucidts1102> mkdir ~/my-folder
+
+
+    디렉터리: C:\Users\lucidts1102
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-11-12  오전 12:07                my-folder
+
+PS C:\Users\lucidts1102> echo "bind_mount" > ~/my-folder/index.html
+PS C:\Users\lucidts1102> ls ~/my-folder
+
+
+    디렉터리: C:\Users\lucidts1102\my-folder
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----      2026-11-12  오전 12:17             26 index.html
+
+
+PS C:\Users\lucidts1102> cat ~/my-folder/index.html
+bind_mount
 ```
 ```
+
+```
+
 ### 10-2. Docker 볼륨
 
 ① 볼륨생성
@@ -708,7 +738,7 @@ index.html
 • 컨테이너 내부에 영속성을 증명하기 위한 테스트용 파일 생성
 PS C:\Users\lucidts1102> docker exec my-web-test sh -c "echo 'Hello, Docker Volume!' > /usr/share/nginx/html/test.txt"
 
-• 컨테이너 -f옵션으로 강제 종료후 삭제
+• 컨테이너 -f옵션으로 강제 종료후 삭제 (docker stop 컨테이너명--> docker rm 컨테이너명)
 PS C:\Users\lucidts1102> docker rm -f my-web-test
 my-web-test
 
