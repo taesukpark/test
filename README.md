@@ -2,7 +2,7 @@
 
 ## 1. 실행환경
 - OS : Ubuntu
-- Shell : bash
+- Shell : b a s h 
 - Docker : 29.9.2
 - Git : 2.56.0.windows.4
 
@@ -518,7 +518,7 @@ hello-world
 ```
 ### 7-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
 
-• Ubuntu 컨테이너를 실행하고 내부 진입명령C:\Users\🙌> wsl -d Ubuntu ↩
+① Ubuntu 컨테이너를 실행하고 내부 진입명령C:\Users\🙌> wsl -d Ubuntu ↩
 ```
 PS C:\Users\🙌> wsl -d Ubuntu ↩
 To run a command as administrator (user "root"), use "sudo <command>".
@@ -541,20 +541,20 @@ Welcome to Ubuntu LTS (GNU/Linux 6.18.54.1-microsoft-standard-WSL2 x86_64)
      96MB
 ```
 
-• ls 명령실행 결과 기록
+② ls 명령실행 결과 기록
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ ls ↩
 <img width="785" height="232" alt="image" src="https://github.com/user-attachments/assets/a451cb6a-d8d0-4486-8d2e-a64cc53c4e01" />
 
 ```
-• echo 명령실행 결과 기록
+③ echo 명령실행 결과 기록
 ```
 🙌@GNIA-C202-J06:/mnt/c/Users/🙌$ echo hello-world ↩
 hello-world
 ```
 
 ### 7-3. 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리한다.
-컨테이너 docker exec 실행시 컨테이너 목록을 조회해 보면 STATUS가 Up 상태임.
+① 컨테이너 docker exec 실행시 컨테이너 목록을 조회해 보면 STATUS가 Up 상태임.
 ```
 C:\Users\🙌>docker exec -it temp-container bash ↩
 root@b0bb823b1b27:/# exit ↩
@@ -562,7 +562,7 @@ C:\Users\🙌>docker ps ↩
 CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS                                     NAMES
 b0bb823b1b27   ubuntu    "bash"                    40 minutes ago   Up 40 minutes                                             temp-container
 ```
-컨테이너 docker attach 실행시 컨테이너 목록을 조회해 보면 STATUS가 Exited상태임.
+② 컨테이너 docker attach 실행시 컨테이너 목록을 조회해 보면 STATUS가 Exited상태임.
 ```
 C:\Users\🙌>docker attach temp-container ↩
 root@b0bb823b1b27:/# exit ↩
@@ -602,6 +602,7 @@ Hi! This is my first image.
 CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS         PORTS                                     NAMES
 b73b20e8498e   nginx     "/docker-entrypoint.…"   2 hours ago   Up 8 minutes   0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
 e38c12e8bc33   nginx     "/docker-entrypoint.…"   4 hours ago   Up 8 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   test-container
+
 🙌@GNIA-C202-J06:~$ curl -v http://localhost:8080 ↩ -v 옵션을 사용하면 요청(Request)과 응답(Response) 과정을 모두 볼 수 있어 포트 매핑이 성공했다는 강력한 증거
 * Host localhost:8080 was resolved.
 * IPv6: ::1
@@ -657,6 +658,90 @@ security features and capabilities please refer to
 <img width="498" height="300" alt="image" src="https://github.com/user-attachments/assets/aa7afc07-5a74-4869-996b-3d6288992009" />
 
 ## 10. Docker 볼륨 영속성 검증
+
+### 10-1. 바운드 마운트 : 실행명령 + 호스트 변경 전/후 비교
+```
+```
+### 10-2. Docker 볼륨
+
+① 볼륨생성
+```
+PS C:\Users\lucidts1102> docker volume create my_data
+my_data
+```
+
+② 볼륨연결
+```
+PS C:\Users\lucidts1102>  docker run -dit --name my-web-test -p 80:80 -v my_data:/usr/share/nginx/html nginx
+b18c608496d8a6a818be92eb5ce13f07557ca1109742db2d3af116b22eb50834
+```
+
+③ 검증명령
+```
+PS C:\Users\lucidts1102> docker volume ls
+DRIVER    VOLUME NAME
+local     my_data
+local     my_shared_data
+
+PS C:\Users\lucidts1102> docker volume inspect my_data
+[
+    {
+        "CreatedAt": "2026-11-11T13:43:51Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/my_data/_data",
+        "Name": "my_data",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+```
+
+④ 컨테이너 삭제 전/후 비교
+
+```
+• 컨테이너 내부파일 확인
+PS C:\Users\lucidts1102> docker exec my-web-test ls /usr/share/nginx/html
+50x.html
+index.html
+
+• 컨테이너 내부에 영속성을 증명하기 위한 테스트용 파일 생성
+PS C:\Users\lucidts1102> docker exec my-web-test sh -c "echo 'Hello, Docker Volume!' > /usr/share/nginx/html/test.txt"
+
+• 컨테이너 -f옵션으로 강제 종료후 삭제
+PS C:\Users\lucidts1102> docker rm -f my-web-test
+my-web-test
+
+• my-web-test 컨테이너 삭제 확인
+PS C:\Users\lucidts1102> docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+• 컨테이너 삭제후 볼륨목록 확인
+PS C:\Users\lucidts1102> docker volume ls
+DRIVER    VOLUME NAME
+local     my_data
+local     my_shared_data
+PS C:\Users\lucidts1102> docker volume inspect my_data
+[
+    {
+        "CreatedAt": "2026-11-11T13:43:51Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/my_data/_data",
+        "Name": "my_data",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+
+• 영속성 확인을 위한 새컨터이너 생성하여 동일 볼륨에 연결하기
+PS C:\Users\lucidts1102> docker run -d --name new-web -v my_data:/usr/share/nginx/html nginx
+20a317d80b4d3fcfb9f71f3c6a2cfd7753a66397d8c174e6b178ffd3438debf6
+
+• new-web 컨테이너에 연결된 my-data 파일내용 확인
+PS C:\Users\lucidts1102> docker exec new-web cat /usr/share/nginx/html/test.txt
+Hello, Docker Volume!
+```
 
 ## 11. Git 설정 및 GitHub 연동
 
