@@ -574,6 +574,25 @@ b0bb823b1b27   ubuntu                            "bash"                    51 mi
 ```
 ## 8. 기존 Dockerfile 기반 커스텀 이미지 제작
 
+```
+프로젝트 파일을 담을 폴더(my-web)를 생성후 my-web폴더로 이동
+PS C:\Users\lucidts1102> mkdir my-web ↩
+
+
+    디렉터리: C:\Users\lucidts1102
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-11-11   오후 3:25                my-web
+
+
+PS C:\Users\lucidts1102> cd my-web ↩
+PS C:\Users\lucidts1102\my-web> echo "Hi! This is my first image." > test.html ↩
+PS C:\Users\lucidts1102\my-web> cat test.html ↩
+Hi! This is my first image..↩
+```
+
 
 ## 9. 포트 매핑 및 접속 증거
 
