@@ -689,7 +689,8 @@ PS C:\Users\lucidts1102> cat ~/my-folder/index.html
 bind_mount
 ```
 ```
-
+docker run -v /호스트/절대경로:/컨테이너/경로 이미지명 또는 
+--mount type=bind,source=/호스트/절대경로,target=/컨테이너/경로
 ```
 
 ### 10-2. Docker 볼륨
