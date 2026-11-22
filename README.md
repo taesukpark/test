@@ -665,6 +665,7 @@ security features and capabilities please refer to
 ```
 <img width="498" height="300" alt="image" src="https://github.com/user-attachments/assets/aa7afc07-5a74-4869-996b-3d6288992009" />
 
+
 ## 10. Docker 볼륨 영속성 검증
 
 ### 10-1. 바운드 마운트 : 실행명령 + 호스트 변경 전/후 비교
@@ -782,12 +783,50 @@ PS C:\Users\lucidts1102> docker exec new-web cat /usr/share/nginx/html/test.txt 
 Hello, Docker Volume!
 ```
 
+
 ## 11. Git 설정 및 GitHub 연동
 
+11-1. Git 사용자 정보/기본 브랜치 설정을 완료하고 git config --list
 ```
-Git 사용자 정보/기본 브랜치 설정을 완료하고
-git config --list
+PS C:\Users\lucidts1102> git --version ↩ git 설치 확인
+git version 2.56.1.windows.1
+PS C:\Users\lucidts1102> git config --global user.name "taesukpark" ↩
+PS C:\Users\lucidts1102> git config --global user.email "lucidts@hanmail.net" ↩
+PS C:\Users\lucidts1102> git config --global init.defaultBranch main ↩
+PS C:\Users\lucidts1102> git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=schannel
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+core.quotepath=false
+pull.rebase=false
+credential.helper=manager
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=main
+safe.directory=*
+safe.directory=*
+safe.directory=*
+safe.directory=*
+safe.directory=*
+safe.directory=*
+safe.directory=*
+safe.directory=*
+safe.directory=*
+user.name=taesukpark
+user.email=lucidts@hanmail.net
+init.defaultbranch=main
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+:
+
 ```
+
 
 ## 12. 보안 및 개인정보 보호
 
@@ -795,7 +834,10 @@ git config --list
 기술문서/로그/스크린샷에 토큰, 비밀번호, 개인키, 인증 코드 등이 미포함되게 할 것
 ```
 
-## 과제를 마치면서...
+
+
+## ** 과제를 마치면서...
+
 
 ### <절대경로와 상대경로의 차이 : 디렉토리(폴더)나 파일의 위치를 표현하는 방법의 차이>
 
@@ -809,6 +851,7 @@ git config --list
 ~ (물결표) — 홈 폴더
 ```
 
+
 ### <파일 권한의 의미(r/w/x)와 755, 644 같은 표기가 어떤 규칙으로 해석되는지 설명>
 --> 4. 권한 실습 및 증거 기록 참고
 ```
@@ -820,17 +863,23 @@ x : 실행 권한(1)
 (user그룹 권한)      5 : r-x       4 : r--
 (기타 사용자 권한)    5 : r-x       4 : r--
 ```
+
+
 ### <기존 Dockerfile을 기반으로 '커스텀 이미지'를 만들기>
 --> 8. 기존 Dockerfile 기반 커스텀 이미지 제작 참고
+
 
 ### <포트 매핑이 필요한 이유>
 --> 9. 포트 매핑 및 접속 증거 참고
 ```
 Docker 컨테이너는 독립된 네트워크에 있어 기본적으로 외부에서 접근할 수 없으므로,
-- 포트 매핑으로 호스트의 특정 포트와 컨테이너의 포트를 연결해야 외부 접속이 가능
+- 포트 매핑으로 호스트의 특정 포트와 컨테이너의 포트를 연결해야 외부 접속 가능
 - 지정한 포트만 선택적으로 외부와 연결하여 필요한 서비스만 열어 보안성 향상
-- 
+- 서로 다른 호스트 포트에 같은 컨테이너 포트를 사용하는 서비스도 충돌없이 운영 가능
+- 컨테이너 내부 포트를 바꾸지 않고 호스트 포트만 변경할 수 있어 개발 및 테스트, 운영환경에 맞게 포트 분리가능
+- 같은 이미지를 바탕으로 여러 컨테이너를 동시에 실행하여 수평적 확장이 이루어져 각 매핑마다 독립적으로 운영가능
 ```
+
 
 ### <Docker 볼륨(영속 데이터)>
  --> 10. Docker 볼륨 영속성 검증 참고
@@ -840,7 +889,8 @@ Docker 컨테이너는 독립된 네트워크에 있어 기본적으로 외부�
 컨테이너를 삭제해도 볼륨은 영속적으로 존재하므로 다른 컨테이너를 새로 만들어 다시 연결해서 이전 데이터를 그대로 사용할 수 있음.
 ```
 
+
 ### <Git(로컬 버전관리)과 GitHub(원격 협업 플랫폼)의 역할 차이>
 
-<img width="474" height="268" alt="image" src="https://github.com/user-attachments/assets/3d7b9c48-f22d-4d9d-b6f5-d62c56a522cf" />
+<img width="707" height="402" alt="image" src="https://github.com/user-attachments/assets/3d7b9c48-f22d-4d9d-b6f5-d62c56a522cf" />
 
