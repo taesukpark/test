@@ -526,48 +526,45 @@ hello-world
 ```
 ### 7-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
 
-① Ubuntu 컨테이너를 실행하고 내부 진입명령C:\Users\lucidts1102> wsl -d Ubuntu ↩
+① Ubuntu 컨테이너를 실행하고 내부 진입명령
 ```
-PS C:\Users\lucidts1102> wsl -d Ubuntu
+PS C:\Users\lucidts1102> wsl -d Ubuntu ↩
 lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$
 ```
 
 ② ls 명령실행 결과 기록
-```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩
-<img width="785" height="232" alt="image" src="https://github.com/user-attachments/assets/a451cb6a-d8d0-4486-8d2e-a64cc53c4e01" />
 
-```
+<img width="831" height="585" alt="image" src="https://github.com/user-attachments/assets/8506bf6c-6470-4c80-bd13-653f0b2e0b8d" />
+
+
 ③ echo 명령실행 결과 기록
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ echo hello-world ↩
+lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ echo hello-world ↩
 hello-world
 ```
 
 ### 7-3. 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리
 ① 컨테이너 docker exec 실행시 컨테이너 목록을 조회해 보면 STATUS가 Up 상태임.
 ```
-C:\Users\lucidts1102>docker exec -it temp-container bash ↩
-root@b0bb823b1b27:/# exit ↩
-C:\Users\lucidts1102>docker ps ↩
-CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS                                     NAMES
-b0bb823b1b27   ubuntu    "bash"                    40 minutes ago   Up 40 minutes                                             temp-container
+lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ docker exec -it test-container bash ↩
+root@f7c79801c81b:/#
+lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ docker ps ↩
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                     NAMES
+f7c79801c81b   nginx     "/docker-entrypoint.…"   18 minutes ago   Up 18 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   test-container
 ```
 ② 컨테이너 docker attach 실행시 컨테이너 목록을 조회해 보면 STATUS가 Exited상태임.
 ```
-C:\Users\lucidts1102>docker attach temp-container ↩
-root@b0bb823b1b27:/# exit ↩
-exit
-
-C:\Users\lucidts1102>docker ps -a ↩
-CONTAINER ID   IMAGE                             COMMAND                   CREATED          STATUS                          PORTS                                     NAMES
-b0bb823b1b27   ubuntu                            "bash"                    51 minutes ago   Exited (0) About a minute ago                                             temp-container
+lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ docker attach test-container ↩
+ctrl + c
+ucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ docker ps -a ↩
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                          PORTS     NAMES
+f7c79801c81b   nginx     "/docker-entrypoint.…"   9 minutes ago    Exited (0) About a minute ago             test-container
 ```
+
 ## 8. 기존 Dockerfile 기반 커스텀 이미지 제작
 
 ```
-프로젝트 파일을 담을 폴더(my-web)를 생성후 my-web폴더로 이동
-PS C:\Users\lucidts1102> mkdir my-web ↩
+PS C:\Users\lucidts1102> mkdir docker-web ↩
 
 
     디렉터리: C:\Users\lucidts1102
@@ -575,13 +572,77 @@ PS C:\Users\lucidts1102> mkdir my-web ↩
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----      2026-11-11   오후 3:25                my-web
+d-----      2026-11-23   오전 5:44                docker-web
 
 
-PS C:\Users\lucidts1102> cd my-web ↩
-PS C:\Users\lucidts1102\my-web> echo "Hi! This is my first image." > test.html ↩
-PS C:\Users\lucidts1102\my-web> cat test.html ↩
+PS C:\Users\lucidts1102> cd docker-web ↩
+PS C:\Users\lucidts1102\docker-web> echo "Hi! This is my first image." > index.html ↩ Redirection 기호 >, >>
+PS C:\Users\lucidts1102\my-web> cat index.html ↩
 Hi! This is my first image.
+PS C:\Users\lucidts1102\docker-web> New-Item Dockerfile ↩
+
+
+    디렉터리: C:\Users\lucidts1102\docker-web
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----      2026-11-23   오전 5:47              0 Dockerfile
+PS C:\Users\lucidts1102\docker-web> ls ↩
+
+
+    디렉터리: C:\Users\lucidts1102\docker-web
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----      2026-11-23   오전 5:47              0 Dockerfile
+-a----      2026-11-23   오전 5:45             60 index.html
+```
+
+<img width="130" height="73" alt="image" src="https://github.com/user-attachments/assets/0f2d66fd-ffea-4a03-be42-a61c3bd39e64" />
+
+
+```
+PS C:\Users\lucidts1102\docker-web> docker build -t my-web . ↩
+[+] Building 5.2s (8/8) FINISHED                                                                       docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                   0.0s
+ => => transferring dockerfile: 73B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/nginx:alpine                                                        2.2s
+ => [auth] library/nginx:pull token for registry-1.docker.io                                                           0.0s
+ => [internal] load .dockerignore                                                                                      0.0s
+ => => transferring context: 2B                                                                                        0.0s
+ => [internal] load build context                                                                                      0.0s
+ => => transferring context: 97B                                                                                       0.0s
+ => [1/2] FROM docker.io/library/nginx:alpine@sha256:fb4658584bd9a916ffb6f6e365f97c25cfdb2923801f551ea08356e695f14ff7  2.8s
+ => => resolve docker.io/library/nginx:alpine@sha256:fb4658584bd9a916ffb6f6e365f97c25cfdb2923801f551ea08356e695f14ff7  0.0s
+ => => sha256:e68702efeaad0be9ced2b4d1cedb62cd15f5d51865d913955a883f653cd9e117 2.50kB / 2.50kB                         0.0s
+ => => sha256:62d1c420c34ae91f7bffd349903cd6846806b835129c8b7ba2da28b3be323cd1 12.32kB / 12.32kB                       0.0s
+ => => sha256:04c3905a997c5ada93c8e4ad6c8d593e04c5ad4efa87a648a72f34138ea47117 627B / 627B                             0.2s
+ => => sha256:881fc932939efef04ca120ad44bbd2c0917851eb247aa4995428afb1e80ede17 3.85MB / 3.85MB                         0.9s
+ => => sha256:77a3bfea78f562fc46a238affde2e413f44ebe98eb6accd78acc9aade0711eed 1.94MB / 1.94MB                         0.6s
+ => => sha256:fb4658584bd9a916ffb6f6e365f97c25cfdb2923801f551ea08356e695f14ff7 10.33kB / 10.33kB                       0.0s
+ => => sha256:7cb374baf96870045ef10fb2275d30d893e2010d5fb12d2e8f949babcb3de6bf 965B / 965B                             0.7s
+ => => sha256:4c8c172c658661b7927fad4ab766c7e6c597d83400a3ed3f2e484c5940b4c56a 404B / 404B                             0.8s
+ => => sha256:1dc588c89da10830dde2a359d1b421e384caaae52458be045dcf6770ae7d624a 1.21kB / 1.21kB                         0.9s
+ => => extracting sha256:881fc932939efef04ca120ad44bbd2c0917851eb247aa4995428afb1e80ede17                              0.1s
+ => => sha256:61d8f4c85a745813b78f7b3ea04d0268fd196753e0964ac6cd3f55fe161c865b 1.40kB / 1.40kB                         1.1s
+ => => sha256:c4f3d97811f679e18a790555496d98de98efbd4a61f8741c1aeedd86317c5f6c 20.54MB / 20.54MB                       2.3s
+ => => extracting sha256:77a3bfea78f562fc46a238affde2e413f44ebe98eb6accd78acc9aade0711eed                              0.0s
+ => => extracting sha256:04c3905a997c5ada93c8e4ad6c8d593e04c5ad4efa87a648a72f34138ea47117                              0.0s
+ => => extracting sha256:7cb374baf96870045ef10fb2275d30d893e2010d5fb12d2e8f949babcb3de6bf                              0.0s
+ => => extracting sha256:4c8c172c658661b7927fad4ab766c7e6c597d83400a3ed3f2e484c5940b4c56a                              0.0s
+ => => extracting sha256:1dc588c89da10830dde2a359d1b421e384caaae52458be045dcf6770ae7d624a                              0.0s
+ => => extracting sha256:61d8f4c85a745813b78f7b3ea04d0268fd196753e0964ac6cd3f55fe161c865b                              0.0s
+ => => extracting sha256:c4f3d97811f679e18a790555496d98de98efbd4a61f8741c1aeedd86317c5f6c                              0.2s
+ => [2/2] COPY index.html .                                                                                            0.0s
+ => exporting to image                                                                                                 0.0s
+ => => exporting layers                                                                                                0.0s
+ => => writing image sha256:45728d00dd5db32ae2017bec1f2b91008ec4f93ca04384e3a74be2f948c0fac2                           0.0s
+ => => naming to docker.io/library/my-web
+
+<img width="512" height="278" alt="image" src="https://github.com/user-attachments/assets/1387d5b7-4496-4559-90f0-006999f1a0b9" />
+
 
 ```
 
