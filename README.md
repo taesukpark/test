@@ -509,6 +509,14 @@ CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/
 e38c12e8bc33   test-container   0.00%     28.18MiB / 15.25GiB   0.18%     1.3kB / 126B   19MB / 16.4kB   26
 Ctrl+C ↩ test-container에서 빠져나오기
 ```
+### 6-4. docker 설치 및 실행 단계 오류 해결
+
+<img width="729" height="516" alt="image" src="https://github.com/user-attachments/assets/11447c79-a688-4569-8a7d-5f0799c77d8a" />
+
+### 6-5. docker 네트워크 및 연결문제(트러블슈팅 2건 문제->원인가설->확인->해결/대안)
+
+<img width="728" height="209" alt="image" src="https://github.com/user-attachments/assets/bbdbf043-b1dc-41de-8b1c-7e470fe8e958" />
+
 
 ## 7. 컨테이너 실행 실습
 ### 7-1. hello-world 실행 성공을 기록한다.
@@ -816,5 +824,8 @@ x : 실행 권한(1)
 ### <포트 매핑이 필요한 이유> --> 9. 포트 매핑 및 접속 증거 참고
 
 ```
-Docker 컨테이너는 독립된 네트워크에 있어 기본적으로 외부에서 접근할 수 없으므로, 포트 매핑으로 호스트의 특정 포트와 컨테이너의 포트를 연결해야 외부 접속이 가능
+Docker 컨테이너는 독립된 네트워크에 있어 기본적으로 외부에서 접근할 수 없으므로,
+- 포트 매핑으로 호스트의 특정 포트와 컨테이너의 포트를 연결해야 외부 접속이 가능
+- 지정한 포트만 선택적으로 외부와 연결하여 필요한 서비스만 열어 보안성 향상
+- 
 ```
