@@ -436,33 +436,33 @@ ubuntu:latest                     6a06111c3b0a        163MB         45.9MB    U
 ### 6-2. 컨테이너 : 실행/중지/목록 확인(예: docker ps, docker ps -a)
 ```
 ① 컨테이너 실행
-lucidts11022@GNIA-C202-J06:~$ docker run -d --name welcome-to-docker -p 8088:80 nginx ↩
+C:\Users\lucidts1102> docker run -d --name welcome-to-docker -p 8088:80 nginx ↩
 b73b20e8498ed0e7e278e506306f0b84908a375c798f17be52643bfcd9ecbcc5
 
 ② 컨테이너 중지전 목록 확인
-lucidts1102@GNIA-C202-J06:~$ docker ps -a ↩ 모든 목록 확인중b73b20e8498e의 status가 Up상태임을 확인
+C:\Users\lucidts1102> docker ps -a ↩ 모든 목록 확인중b73b20e8498e의 status가 Up상태임을 확인
 CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS                                     NAMES
 b73b20e8498e   nginx     "/docker-entrypoint.…"   7 minutes ago   Up 7 minutes                0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
 e38c12e8bc33   nginx     "/docker-entrypoint.…"   2 hours ago     Exited (0) 10 seconds ago                                             test-container
 ③ 컨테이너 중지
-lucidts1102@GNIA-C202-J06:~$ docker stop welcome-to-docker ↩ welcome-to-docker라는 명칭의 컨테이너 중지
+C:\Users\lucidts1102> docker stop welcome-to-docker ↩ welcome-to-docker라는 명칭의 컨테이너 중지
 welcome-to-docker
 
 ④ 컨테이너 중지후 목록 확인
-lucidts1102@GNIA-C202-J06:~$ docker ps -a ↩ status가 Exited (0)인 중지컨테이너를 포함한 모든 목록 확인
+C:\Users\lucidts1102> docker ps -a ↩ status가 Exited (0)인 중지컨테이너를 포함한 모든 목록 확인
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
 b73b20e8498e   nginx     "/docker-entrypoint.…"   10 minutes ago   Exited (0) 21 seconds ago             welcome-to-docker
 e38c12e8bc33   nginx     "/docker-entrypoint.…"   2 hours ago      Exited (0) 3 minutes ago              test-container
 
 ⑤ 컨테이너 중지후 실행중인 컨테이너 확인  
-lucidts1102@GNIA-C202-J06:~$ docker ps ↩ 현재 실행중인 컨테어너 목록 확인
+C:\Users\lucidts1102> docker ps ↩ 현재 실행중인 컨테어너 목록 확인
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 
 ### 6-3. 운영 : 로그 확인(예: docker logs), 리소스 확인(예: docker stats)
 ```
 ① 로그 확인
-lucidts1102@GNIA-C202-J06:~$ docker logs test-container ↩
+C:\Users\lucidts1102> docker logs test-container ↩
 /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -504,7 +504,7 @@ lucidts1102@GNIA-C202-J06:~$ docker logs test-container ↩
 2026/11/09 18:25:54 [notice] 1#1: start worker process 52
 
 ② 리소스 확인
-lucidts1102@GNIA-C202-J06:~$ docker stats ↩
+C:\Users\lucidts1102> docker stats ↩
 CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O        BLOCK I/O       PIDS
 e38c12e8bc33   test-container   0.00%     28.18MiB / 15.25GiB   0.18%     1.3kB / 126B   19MB / 16.4kB   26
 Ctrl+C ↩ test-container에서 빠져나오기
@@ -521,32 +521,15 @@ Ctrl+C ↩ test-container에서 빠져나오기
 ## 7. 컨테이너 실행 실습
 ### 7-1. hello-world 실행 성공을 기록한다.
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ echo hello-world ↩
+C:\Users\lucidts1102> echo hello-world ↩
 hello-world
 ```
 ### 7-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
 
 ① Ubuntu 컨테이너를 실행하고 내부 진입명령C:\Users\lucidts1102> wsl -d Ubuntu ↩
 ```
-PS C:\Users\lucidts1102> wsl -d Ubuntu ↩
-To run a command as administrator (user "root"), use "sudo <command>".
-See "man sudo_root" for details.
-
-Welcome to Ubuntu LTS (GNU/Linux 6.18.54.1-microsoft-standard-WSL2 x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/pro
-
- System information as of Sat Nov  7 20:18:19 KST 2026
-
-  System load:  0.0                 Processes:             76
-  Usage of /:   0.1% of 1006.85GB   Users logged in:       0
-  Memory usage: 4%                  IPv4 address for eth0: 192.168.81.207
-  Swap usage:   0%
-
-  => /usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2 is using 100.0% of
-     96MB
+PS C:\Users\lucidts1102> wsl -d Ubuntu
+lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$
 ```
 
 ② ls 명령실행 결과 기록
@@ -668,11 +651,14 @@ security features and capabilities please refer to
 
 ## 10. Docker 볼륨 영속성 검증
 
-### 10-1. 바운드 마운트 : 실행명령 + 호스트 변경 전/후 비교
+### 10-1. 바인드 마운트 : 실행명령 + 호스트 변경 전/후 비교
+
+<img width="487" height="207" alt="image" src="https://github.com/user-attachments/assets/b7621c6c-4812-45a5-84c5-e97fbc5567fa" />
+
 
 ① 내 컴퓨터에 폴더와 파일 생성
 ```
-PS C:\Users\lucidts1102> mkdir ~/my-folder ↩
+PS C:\Users\lucidts1102> mkdir -p /my-folder ↩
 
 
     디렉터리: C:\Users\lucidts1102
