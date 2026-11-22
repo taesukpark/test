@@ -792,6 +792,7 @@ git config --list
 ### <절대경로와 상대경로의 차이 : 디렉토리(폴더)나 파일의 위치를 표현하는 방법의 차이>
 
 <img width="899" height="183" alt="image" src="https://github.com/user-attachments/assets/0477a464-0859-444f-bf41-23842994cbdc" />
+
 ```
 . (점 하나) — 지금 있는 폴더
 
