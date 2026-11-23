@@ -23,13 +23,13 @@
 
 ### 3-1. 현재 위치 확인
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ pwd ↩
-/mnt/c/Users/lucidts1102
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ pwd ↩
+/mnt/c/Users/PC로그인ID
 ```
 
 ### 3-2. 목록확인(숨김 파일 포함)
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls -a ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls -a ↩
  .                    NTUSER.DAT
  ..                   NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TM.blf
  .config              NTUSER.DAT{1f84748c-b1a2-11f1-8248-b082e2ec90c3}.TMContainer00000000000000000001.regtrans-ms
@@ -55,16 +55,16 @@ lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls -a ↩
 
 ### 3-3. 이동(폴더)
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ cd .. ↩ lucidts1102$의 상위폴더로 이동
-lucidts1102@GNIA-C202-J06:/mnt/c/Users$ cd ~ ↩ 현사용자의 홈 디렉토리로 이동
-lucidts1102@GNIA-C202-J06:~$ cd /mnt/c/Users/lucidts1102 ↩ /mnt/c/Users/lucidts1102$로 이동
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cd .. ↩ PC로그인ID$의 상위폴더로 이동
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users$ cd ~ ↩ 현사용자의 홈 디렉토리로 이동
+PC로그인ID@GNIA-C202-J06:~$ cd /mnt/c/Users/PC로그인ID ↩ /mnt/c/Users/PC로그인ID$로 이동
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$
 ```
 
 ### 3-4. 생성(폴더)
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ mkdir AllinONE ↩ 현재 폴더에 AllinONE 폴더 생성
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩ 현재 폴더 목록을 조회해서 mkdir 결과 확인
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ mkdir AllinONE ↩ 현재 폴더에 AllinONE 폴더 생성
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩ 현재 폴더 목록을 조회해서 mkdir 결과 확인
  AllinONE
  AppData
  'Application Data'
@@ -87,18 +87,18 @@ lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩ 현재 폴더 목록�
 
 ### 3-5. 복사
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ cp test1.txt test2.txt ↩
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cp test1.txt test2.txt ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩
 (생략)
  test1.txt
  test2.txt
  vscode-remote-wsl
  ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 복사된 파일과 원본 파일의 내용확인
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ cat test1.txt
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cat test1.txt
 ��Welcome AllinOne!
 
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ cat test2.txt
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cat test2.txt
 ��Welcome AllinOne!
 
 ```
@@ -106,7 +106,7 @@ lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ cat test2.txt
 ### 3-6. 파일 이동/이름변경
 ```
 파일 원본 조회
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩
  AllinONE
  AppData
 (생략)
@@ -116,9 +116,9 @@ lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩
  vscode-remote-wsl
  ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 파일 이동/이름변경(test1.txt 파일을 test3.txt로 내용 이동 및 파일명 변경)
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ mv test3.txt test1.txt ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ mv test3.txt test1.txt ↩
 파일 이동/이름변경 상황 조회
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩
  AllinONE
  AppData
 (생략)
@@ -131,8 +131,8 @@ lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩
 
 ### 3-7. 삭제
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ rm test2.txt ↩
-lucidts1102@GNIA-C202-J06:/mnt/c/Userslucidts1102$ ls ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ rm test2.txt ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/UsersPC로그인ID$ ls ↩
  AllinONE
  AppData
 (생략)
@@ -144,14 +144,14 @@ lucidts1102@GNIA-C202-J06:/mnt/c/Userslucidts1102$ ls ↩
 
 ### 3-8. 파일내용확인
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ cat test1.txt ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cat test1.txt ↩
 ��Welcome AllinOne!
 ```
 
 ### 3-9. 빈 파일 생성
 ```
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ touch test.txt ↩
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ touch test.txt ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩
  AllinONE
  AppData
 (생략)
@@ -160,84 +160,84 @@ lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ ls ↩
  test1.txt
  vscode-remote-wsl
  ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$ cat test.txt ↩
-lucidts1102@GNIA-C202-J06:/mnt/c/Users/lucidts1102$
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cat test.txt ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$
 ```
 ## 4. 권한 실습 및 증거 기록
 최소 요구 : 파일 1개(test.txt), 디렉토리 1개(AllinONE)에 대해 권한 변경 실험을 수행
 ### 4-1. 권한을 확인/변경하는 명령을 수행
 ```
 • 권한 확인
-lucidts1102@GNIA-C202-J06:~$ pwd ↩
-/home/lucidts1102
-lucidts1102@GNIA-C202-J06:~$ ls -al ↩
+PC로그인ID@GNIA-C202-J06:~$ pwd ↩
+/home/PC로그인ID
+PC로그인ID@GNIA-C202-J06:~$ ls -al ↩
 total 32
-drwxr-x--- 4 lucidts1102 lucidts1102 4096 Nov  8 02:31 .
+drwxr-x--- 4 PC로그인ID PC로그인ID 4096 Nov  8 02:31 .
 drwxr-xr-x 3 root        root        4096 Nov  8 01:58 ..
--rw------- 1 lucidts1102 lucidts1102  775 Nov  8 05:08 .bash_history
--rw-r--r-- 1 lucidts1102 lucidts1102  220 Nov  8 01:58 .bash_logout
--rw-r--r-- 1 lucidts1102 lucidts1102 3771 Nov  8 01:58 .bashrc
-drwxr-x--- 4 lucidts1102 lucidts1102 4096 Nov  8 01:59 .cache
-drwxr-x--- 3 lucidts1102 lucidts1102 4096 Nov  8 01:59 .config
--rw-rw-r-- 1 lucidts1102 lucidts1102    0 Nov  9 20:32 .motd_shown
--rw-r--r-- 1 lucidts1102 lucidts1102  807 Nov  8 01:58 .profile
-lucidts1102@GNIA-C202-J06:~$ mkdir AllinONE ↩
-lucidts1102@GNIA-C202-J06:~$ ls -l ↩
+-rw------- 1 PC로그인ID PC로그인ID  775 Nov  8 05:08 .bash_history
+-rw-r--r-- 1 PC로그인ID PC로그인ID  220 Nov  8 01:58 .bash_logout
+-rw-r--r-- 1 PC로그인ID PC로그인ID 3771 Nov  8 01:58 .bashrc
+drwxr-x--- 4 PC로그인ID PC로그인ID 4096 Nov  8 01:59 .cache
+drwxr-x--- 3 PC로그인ID PC로그인ID 4096 Nov  8 01:59 .config
+-rw-rw-r-- 1 PC로그인ID PC로그인ID    0 Nov  9 20:32 .motd_shown
+-rw-r--r-- 1 PC로그인ID PC로그인ID  807 Nov  8 01:58 .profile
+PC로그인ID@GNIA-C202-J06:~$ mkdir AllinONE ↩
+PC로그인ID@GNIA-C202-J06:~$ ls -l ↩
 total 4
-drwxr-xr-x 2 lucidts11022 lucidts1102 4096 Nov  9 20:50 AllinONE
-lucidts1102@GNIA-C202-J06:~$ cd AllinONE ↩ 폴더 만들고
-lucidts1102@GNIA-C202-J06:~/AllinONE$ ls ↩ 빈 폴더에
-lucidts1102@GNIA-C202-J06:~/AllinONE$ touch test.txt ↩ test.txt 빈 파일 생성
-lucidts1102@GNIA-C202-J06:~/AllinONE$ ls -l ↩ 폴더내 파일 조회
+drwxr-xr-x 2 PC로그인ID2 PC로그인ID 4096 Nov  9 20:50 AllinONE
+PC로그인ID@GNIA-C202-J06:~$ cd AllinONE ↩ 폴더 만들고
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ ls ↩ 빈 폴더에
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ touch test.txt ↩ test.txt 빈 파일 생성
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ ls -l ↩ 폴더내 파일 조회
 total 0
--rw-r--r-- 1 lucidts1102 lucidts1102 0 Nov  9 20:52 test.txt
+-rw-r--r-- 1 PC로그인ID PC로그인ID 0 Nov  9 20:52 test.txt
 
 • 권한 변경(디렉토리AllinONE 권한을 755에서 765로 변경해 보기)
-lucidts1102@GNIA-C202-J06:~$ ls ↩
+PC로그인ID@GNIA-C202-J06:~$ ls ↩
 AllinONE
-lucidts1102@GNIA-C202-J06:~$ ls -l ↩
+PC로그인ID@GNIA-C202-J06:~$ ls -l ↩
 total 4
-drwxr-xr-x 2 lucidts1102 lucidts1102 4096 Nov  9 20:52 AllinONE
-lucidts1102@GNIA-C202-J06:~$ chmod 765 AllinONE ↩ AllinONE 폴더의 권한 모드를 765로 변경
-lucidts1102@GNIA-C202-J06:~$ ls -l ↩
+drwxr-xr-x 2 PC로그인ID PC로그인ID 4096 Nov  9 20:52 AllinONE
+PC로그인ID@GNIA-C202-J06:~$ chmod 765 AllinONE ↩ AllinONE 폴더의 권한 모드를 765로 변경
+PC로그인ID@GNIA-C202-J06:~$ ls -l ↩
 total 4
-drwxrw-r-x 2 lucidts1102 lucidts1102 4096 Nov  9 20:52 AllinONE
+drwxrw-r-x 2 PC로그인ID PC로그인ID 4096 Nov  9 20:52 AllinONE
 
 • 권한 변경(test.txt 파일에 대한 권한을 644에서 744로 변경해 보기)
-lucidts1102@GNIA-C202-J06:~$ cd AllinONE ↩
-lucidts1102@GNIA-C202-J06:~/AllinONE$ ls -l ↩
+PC로그인ID@GNIA-C202-J06:~$ cd AllinONE ↩
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ ls -l ↩
 total 0
--rw-r--r-- 1 lucidts1102 lucidts1102 0 Nov  9 20:52 test.txt
-lucidts1102@GNIA-C202-J06:~/AllinONE$ chmod 744 test.txt ↩
-lucidts1102@GNIA-C202-J06:~/AllinONE$ ls -l ↩
+-rw-r--r-- 1 PC로그인ID PC로그인ID 0 Nov  9 20:52 test.txt
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ chmod 744 test.txt ↩
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ ls -l ↩
 total 0
--rwxr--r-- 1 lucidts1102 lucidts1102 0 Nov  9 20:52 test.txt
+-rwxr--r-- 1 PC로그인ID PC로그인ID 0 Nov  9 20:52 test.txt
 
 • 권한 변경(빈 파일test1.txt 생성하여 test.txt와 test1.txt를 같은 권한으로 변경해 보기)
-lucidts1102@GNIA-C202-J06:~/AllinONE$ ls ↩
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ ls ↩
 test.txt
-lucidts1102@GNIA-C202-J06:~/AllinONE$ touch test1.txt ↩ test1.txt 빈파일 생성
-lucidts1102@GNIA-C202-J06:~/AllinONE$ ls -l ↩
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ touch test1.txt ↩ test1.txt 빈파일 생성
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ ls -l ↩
 total 0
--rwxr--r-- 1 lucidts1102 lucidts1102 0 Nov  9 20:52 test.txt
--rw-r--r-- 1 lucidts1102 lucidts1102 0 Nov  9 23:14 test1.txt
-lucidts1102@GNIA-C202-J06:~/AllinONE$ chmod --reference=test.txt test1.txt ↩ test.txt와 test1.txt를 같은 권한으로 변경
-lucidts1102@GNIA-C202-J06:~/AllinONE$ ls -l ↩
+-rwxr--r-- 1 PC로그인ID PC로그인ID 0 Nov  9 20:52 test.txt
+-rw-r--r-- 1 PC로그인ID PC로그인ID 0 Nov  9 23:14 test1.txt
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ chmod --reference=test.txt test1.txt ↩ test.txt와 test1.txt를 같은 권한으로 변경
+PC로그인ID@GNIA-C202-J06:~/AllinONE$ ls -l ↩
 total 0
--rwxr--r-- 1 lucidts1102 lucidts1102 0 Nov  9 20:52 test.txt
--rwxr--r-- 1 lucidts1102 lucidts1102 0 Nov  9 23:14 test1.txt
+-rwxr--r-- 1 PC로그인ID PC로그인ID 0 Nov  9 20:52 test.txt
+-rwxr--r-- 1 PC로그인ID PC로그인ID 0 Nov  9 23:14 test1.txt
 ```
 ### 4-2. 권한변경 전/후 비교하기
 ```
 • chmod -v옵션으로 test.txt 파일에 대한 변경전 권한과 변경후 권한을 메시지로 확인
-lucidts1102@GNIA-C202-J06:~/AllinONE$  chmod -v 751 test.txt ↩ 권한모드를 751로 바꾸면서 변경 전/후 나타냄
+PC로그인ID@GNIA-C202-J06:~/AllinONE$  chmod -v 751 test.txt ↩ 권한모드를 751로 바꾸면서 변경 전/후 나타냄
 mode of 'test.txt' changed from 0744 (rwxr--r--) to 0751 (rwxr-x--x)
 ```
 
 ## 5. Docker 설치 및 기본 점검
 ### 5-1. Docker 버전 확인 결과를 기록한다.(docker --version)
 ```
-C:\Users\lucidts1102>docker version ↩
+C:\Users\PC로그인ID>docker version ↩
 Client:
  Version:           29.9.2
  API version:       1.56
@@ -269,7 +269,7 @@ Server: Docker Desktop 4.97.0 (244584)
 ### 5-2. Docker 데몬 동작 여부 확인 결과를 기록한다. (docker info 또는 동등 점검)
 데몬이 **정상동작**일 경우 Client와 Server 정보가 모두 출력된다.
 ```
-C:\Users\lucidts1102>docker version ↩
+C:\Users\PC로그인ID>docker version ↩
 Client:
  Version:           29.9.2
  API version:       1.56
@@ -298,7 +298,7 @@ Server: Docker Desktop 4.97.0 (244584)
   Version:          0.19.0
   GitCommit:        de40ad0
 
-C:\Users\lucidts1102>docker info ↩
+C:\Users\PC로그인ID>docker info ↩
 Client:
  Version:    29.9.2
  Context:    desktop-linux
@@ -414,7 +414,7 @@ Server:
 ① 이미지 다운로드
 
 ```
-C:\Users\lucidts1102>docker pull ubuntu ↩ 
+C:\Users\PC로그인ID>docker pull ubuntu ↩ 
 Using default tag: latest
 latest: Pulling from library/ubuntu
 Digest: sha256:6a06111c3b0a8600feadb270aec771dc239bf407b25625f93f44ab00e11f4d3c
@@ -424,7 +424,7 @@ docker.io/library/ubuntu:latest
 
 ② 이미지 목록확인
 ```
-C:\Users\lucidts1102>docker images ↩
+C:\Users\PC로그인ID>docker images ↩
                                                                                                    i Info →   U  In Use
 IMAGE                             ID             DISK USAGE   CONTENT SIZE   EXTRA
 docker/welcome-to-docker:latest   c4d56c24da4f       22.2MB         6.03MB    U
@@ -436,33 +436,33 @@ ubuntu:latest                     6a06111c3b0a        163MB         45.9MB    U
 ### 6-2. 컨테이너 : 실행/중지/목록 확인(예: docker ps, docker ps -a)
 ```
 ① 컨테이너 실행
-C:\Users\lucidts1102> docker run -d --name welcome-to-docker -p 8088:80 nginx ↩
+C:\Users\PC로그인ID> docker run -d --name welcome-to-docker -p 8088:80 nginx ↩
 b73b20e8498ed0e7e278e506306f0b84908a375c798f17be52643bfcd9ecbcc5
 
 ② 컨테이너 중지전 목록 확인
-C:\Users\lucidts1102> docker ps -a ↩ 모든 목록 확인중b73b20e8498e의 status가 Up상태임을 확인
+C:\Users\PC로그인ID> docker ps -a ↩ 모든 목록 확인중b73b20e8498e의 status가 Up상태임을 확인
 CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS                                     NAMES
 b73b20e8498e   nginx     "/docker-entrypoint.…"   7 minutes ago   Up 7 minutes                0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
 e38c12e8bc33   nginx     "/docker-entrypoint.…"   2 hours ago     Exited (0) 10 seconds ago                                             test-container
 ③ 컨테이너 중지
-C:\Users\lucidts1102> docker stop welcome-to-docker ↩ welcome-to-docker라는 명칭의 컨테이너 중지
+C:\Users\PC로그인ID> docker stop welcome-to-docker ↩ welcome-to-docker라는 명칭의 컨테이너 중지
 welcome-to-docker
 
 ④ 컨테이너 중지후 목록 확인
-C:\Users\lucidts1102> docker ps -a ↩ status가 Exited (0)인 중지컨테이너를 포함한 모든 목록 확인
+C:\Users\PC로그인ID> docker ps -a ↩ status가 Exited (0)인 중지컨테이너를 포함한 모든 목록 확인
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
 b73b20e8498e   nginx     "/docker-entrypoint.…"   10 minutes ago   Exited (0) 21 seconds ago             welcome-to-docker
 e38c12e8bc33   nginx     "/docker-entrypoint.…"   2 hours ago      Exited (0) 3 minutes ago              test-container
 
 ⑤ 컨테이너 중지후 실행중인 컨테이너 확인  
-C:\Users\lucidts1102> docker ps ↩ 현재 실행중인 컨테어너 목록 확인
+C:\Users\PC로그인ID> docker ps ↩ 현재 실행중인 컨테어너 목록 확인
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 
 ### 6-3. 운영 : 로그 확인(예: docker logs), 리소스 확인(예: docker stats)
 ```
 ① 로그 확인
-C:\Users\lucidts1102> docker logs test-container ↩
+C:\Users\PC로그인ID> docker logs test-container ↩
 /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -504,7 +504,7 @@ C:\Users\lucidts1102> docker logs test-container ↩
 2026/11/09 18:25:54 [notice] 1#1: start worker process 52
 
 ② 리소스 확인
-C:\Users\lucidts1102> docker stats ↩
+C:\Users\PC로그인ID> docker stats ↩
 CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O        BLOCK I/O       PIDS
 e38c12e8bc33   test-container   0.00%     28.18MiB / 15.25GiB   0.18%     1.3kB / 126B   19MB / 16.4kB   26
 Ctrl+C ↩ test-container에서 빠져나오기
@@ -521,15 +521,15 @@ Ctrl+C ↩ test-container에서 빠져나오기
 ## 7. 컨테이너 실행 실습
 ### 7-1. hello-world 실행 성공을 기록한다.
 ```
-C:\Users\lucidts1102> echo hello-world ↩
+C:\Users\PC로그인ID> echo hello-world ↩
 hello-world
 ```
 ### 7-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
 
 ① Ubuntu 컨테이너를 실행하고 내부 진입명령
 ```
-PS C:\Users\lucidts1102> wsl -d Ubuntu ↩
-lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$
+PS C:\Users\PC로그인ID> wsl -d Ubuntu ↩
+PC로그인ID@GNIA-C202-A06:/mnt/c/Users/PC로그인ID$
 ```
 
 ② ls 명령실행 결과 기록
@@ -539,24 +539,24 @@ lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$
 
 ③ echo 명령실행 결과 기록
 ```
-lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ echo hello-world ↩
+PC로그인ID@GNIA-C202-A06:/mnt/c/Users/PC로그인ID$ echo hello-world ↩
 hello-world
 ```
 
 ### 7-3. 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리
 ① 컨테이너 docker exec 실행시 컨테이너 목록을 조회해 보면 STATUS가 Up 상태임.
 ```
-lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ docker exec -it test-container bash ↩
+PC로그인ID@GNIA-C202-A06:/mnt/c/Users/PC로그인ID$ docker exec -it test-container bash ↩
 root@f7c79801c81b:/#
-lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ docker ps ↩
+PC로그인ID@GNIA-C202-A06:/mnt/c/Users/PC로그인ID$ docker ps ↩
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                     NAMES
 f7c79801c81b   nginx     "/docker-entrypoint.…"   18 minutes ago   Up 18 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   test-container
 ```
 ② 컨테이너 docker attach 실행시 컨테이너 목록을 조회해 보면 STATUS가 Exited상태임.
 ```
-lucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ docker attach test-container ↩
+PC로그인ID@GNIA-C202-A06:/mnt/c/Users/PC로그인ID$ docker attach test-container ↩
 ctrl + c
-ucidts1102@GNIA-C202-A06:/mnt/c/Users/lucidts1102$ docker ps -a ↩
+ucidts1102@GNIA-C202-A06:/mnt/c/Users/PC로그인ID$ docker ps -a ↩
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                          PORTS     NAMES
 f7c79801c81b   nginx     "/docker-entrypoint.…"   9 minutes ago    Exited (0) About a minute ago             test-container
 ```
@@ -564,10 +564,10 @@ f7c79801c81b   nginx     "/docker-entrypoint.…"   9 minutes ago    Exited (0) 
 ## 8. 기존 Dockerfile 기반 커스텀 이미지 제작
 
 ```
-PS C:\Users\lucidts1102> mkdir docker-web ↩
+PS C:\Users\PC로그인ID> mkdir docker-web ↩
 
 
-    디렉터리: C:\Users\lucidts1102
+    디렉터리: C:\Users\PC로그인ID
 
 
 Mode                 LastWriteTime         Length Name
@@ -575,23 +575,23 @@ Mode                 LastWriteTime         Length Name
 d-----      2026-11-23   오전 5:44                docker-web
 
 
-PS C:\Users\lucidts1102> cd docker-web ↩
-PS C:\Users\lucidts1102\docker-web> echo "Hi! This is my first image." > index.html ↩ Redirection 기호 >, >>
-PS C:\Users\lucidts1102\my-web> cat index.html ↩
+PS C:\Users\PC로그인ID> cd docker-web ↩
+PS C:\Users\PC로그인ID\docker-web> echo "Hi! This is my first image." > index.html ↩ Redirection 기호 >, >>
+PS C:\Users\PC로그인ID\my-web> cat index.html ↩
 Hi! This is my first image.
-PS C:\Users\lucidts1102\docker-web> New-Item Dockerfile ↩
+PS C:\Users\PC로그인ID\docker-web> New-Item Dockerfile ↩
 
 
-    디렉터리: C:\Users\lucidts1102\docker-web
+    디렉터리: C:\Users\PC로그인ID\docker-web
 
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 -a----      2026-11-23   오전 5:47              0 Dockerfile
-PS C:\Users\lucidts1102\docker-web> ls ↩
+PS C:\Users\PC로그인ID\docker-web> ls ↩
 
 
-    디렉터리: C:\Users\lucidts1102\docker-web
+    디렉터리: C:\Users\PC로그인ID\docker-web
 
 
 Mode                 LastWriteTime         Length Name
@@ -604,7 +604,7 @@ Mode                 LastWriteTime         Length Name
 
 
 ```
-PS C:\Users\lucidts1102\docker-web> docker build -t my-web . ↩
+PS C:\Users\PC로그인ID\docker-web> docker build -t my-web . ↩
 [+] Building 5.2s (8/8) FINISHED                                                                       docker:desktop-linux
  => [internal] load build definition from Dockerfile                                                                   0.0s
  => => transferring dockerfile: 73B                                                                                    0.0s
@@ -650,12 +650,12 @@ PS C:\Users\lucidts1102\docker-web> docker build -t my-web . ↩
 ## 9. 포트 매핑 및 접속 증거
 
 ```
-lucidts1102@GNIA-C202-J06:~$ docker ps -a ↩
+PC로그인ID@GNIA-C202-J06:~$ docker ps -a ↩
 CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS         PORTS                                     NAMES
 b73b20e8498e   nginx     "/docker-entrypoint.…"   2 hours ago   Up 8 minutes   0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
 e38c12e8bc33   nginx     "/docker-entrypoint.…"   4 hours ago   Up 8 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   test-container
 
-lucidts1102@GNIA-C202-J06:~$ curl -v http://localhost:8080 ↩ -v 옵션을 사용하면 요청(Request)과 응답(Response) 과정을 모두 볼 수 있어 포트 매핑이 성공했다는 강력한 증거
+PC로그인ID@GNIA-C202-J06:~$ curl -v http://localhost:8080 ↩ -v 옵션을 사용하면 요청(Request)과 응답(Response) 과정을 모두 볼 수 있어 포트 매핑이 성공했다는 강력한 증거
 * Host localhost:8080 was resolved.
 * IPv6: ::1
 * IPv4: 127.0.0.1
@@ -719,21 +719,21 @@ security features and capabilities please refer to
 
 ① 내 컴퓨터에 폴더와 파일 생성
 ```
-PS C:\Users\lucidts1102> mkdir -p /my-folder ↩
+PS C:\Users\PC로그인ID> mkdir -p /my-folder ↩
 
 
-    디렉터리: C:\Users\lucidts1102
+    디렉터리: C:\Users\PC로그인ID
 
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 d-----      2026-11-12  오전 12:07                my-folder
 
-PS C:\Users\lucidts1102> echo "bind_mount" > ~/my-folder/index.html ↩
-PS C:\Users\lucidts1102> ls ~/my-folder ↩
+PS C:\Users\PC로그인ID> echo "bind_mount" > ~/my-folder/index.html ↩
+PS C:\Users\PC로그인ID> ls ~/my-folder ↩
 
 
-    디렉터리: C:\Users\lucidts1102\my-folder
+    디렉터리: C:\Users\PC로그인ID\my-folder
 
 
 Mode                 LastWriteTime         Length Name
@@ -741,7 +741,7 @@ Mode                 LastWriteTime         Length Name
 -a----      2026-11-12  오전 12:17             26 index.html
 
 
-PS C:\Users\lucidts1102> cat ~/my-folder/index.html ↩
+PS C:\Users\PC로그인ID> cat ~/my-folder/index.html ↩
 bind_mount
 ```
 ```
@@ -753,24 +753,24 @@ docker run -v /호스트/절대경로:/컨테이너/경로 이미지명 또는
 
 ① 볼륨생성
 ```
-PS C:\Users\lucidts1102> docker volume create my_data ↩
+PS C:\Users\PC로그인ID> docker volume create my_data ↩
 my_data
 ```
 
 ② 볼륨연결
 ```
-PS C:\Users\lucidts1102>  docker run -dit --name my-web-test -p 80:80 -v my_data:/usr/share/nginx/html nginx ↩
+PS C:\Users\PC로그인ID>  docker run -dit --name my-web-test -p 80:80 -v my_data:/usr/share/nginx/html nginx ↩
 b18c608496d8a6a818be92eb5ce13f07557ca1109742db2d3af116b22eb50834
 ```
 
 ③ 검증명령
 ```
-PS C:\Users\lucidts1102> docker volume ls ↩
+PS C:\Users\PC로그인ID> docker volume ls ↩
 DRIVER    VOLUME NAME
 local     my_data
 local     my_shared_data
 
-PS C:\Users\lucidts1102> docker volume inspect my_data ↩
+PS C:\Users\PC로그인ID> docker volume inspect my_data ↩
 [
     {
         "CreatedAt": "2026-11-11T13:43:51Z",
@@ -788,27 +788,27 @@ PS C:\Users\lucidts1102> docker volume inspect my_data ↩
 
 ```
 • 컨테이너 내부파일 확인
-PS C:\Users\lucidts1102> docker exec my-web-test ls /usr/share/nginx/html ↩
+PS C:\Users\PC로그인ID> docker exec my-web-test ls /usr/share/nginx/html ↩
 50x.html
 index.html
 
 • 컨테이너 내부에 영속성을 증명하기 위한 테스트용 파일 생성
-PS C:\Users\lucidts1102> docker exec my-web-test sh -c "echo 'Hello, Docker Volume!' > /usr/share/nginx/html/test.txt" ↩
+PS C:\Users\PC로그인ID> docker exec my-web-test sh -c "echo 'Hello, Docker Volume!' > /usr/share/nginx/html/test.txt" ↩
 
 • 컨테이너 -f옵션으로 강제 종료후 삭제 (docker stop 컨테이너명--> docker rm 컨테이너명)
-PS C:\Users\lucidts1102> docker rm -f my-web-test ↩
+PS C:\Users\PC로그인ID> docker rm -f my-web-test ↩
 my-web-test
 
 • my-web-test 컨테이너 삭제 확인
-PS C:\Users\lucidts1102> docker ps -a ↩
+PS C:\Users\PC로그인ID> docker ps -a ↩
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
 • 컨테이너 삭제후 볼륨목록 확인
-PS C:\Users\lucidts1102> docker volume ls ↩
+PS C:\Users\PC로그인ID> docker volume ls ↩
 DRIVER    VOLUME NAME
 local     my_data
 local     my_shared_data
-PS C:\Users\lucidts1102> docker volume inspect my_data ↩
+PS C:\Users\PC로그인ID> docker volume inspect my_data ↩
 [
     {
         "CreatedAt": "2026-11-11T13:43:51Z",
@@ -822,11 +822,11 @@ PS C:\Users\lucidts1102> docker volume inspect my_data ↩
 ]
 
 • 영속성 확인을 위한 새컨터이너 생성하여 동일 볼륨에 연결하기
-PS C:\Users\lucidts1102> docker run -d --name new-web -v my_data:/usr/share/nginx/html nginx ↩
+PS C:\Users\PC로그인ID> docker run -d --name new-web -v my_data:/usr/share/nginx/html nginx ↩
 20a317d80b4d3fcfb9f71f3c6a2cfd7753a66397d8c174e6b178ffd3438debf6
 
 • new-web 컨테이너에 연결된 my-data 파일내용 확인
-PS C:\Users\lucidts1102> docker exec new-web cat /usr/share/nginx/html/test.txt ↩
+PS C:\Users\PC로그인ID> docker exec new-web cat /usr/share/nginx/html/test.txt ↩
 Hello, Docker Volume!
 ```
 
@@ -835,12 +835,12 @@ Hello, Docker Volume!
 
 11-1. Git 사용자 정보/기본 브랜치 설정을 완료하고 git config --list
 ```
-PS C:\Users\lucidts1102> git --version ↩ git 설치 확인
+PS C:\Users\PC로그인ID> git --version ↩ git 설치 확인
 git version 2.56.1.windows.1
-PS C:\Users\lucidts1102> git config --global user.name "사용자명" ↩
-PS C:\Users\lucidts1102> git config --global user.email "사용자email" ↩
-PS C:\Users\lucidts1102> git config --global init.defaultBranch main ↩
-PS C:\Users\lucidts1102> git config --list
+PS C:\Users\PC로그인ID> git config --global user.name "사용자명" ↩
+PS C:\Users\PC로그인ID> git config --global user.email "사용자email" ↩
+PS C:\Users\PC로그인ID> git config --global init.defaultBranch main ↩
+PS C:\Users\PC로그인ID> git config --list
 diff.astextplain.textconv=astextplain
 filter.lfs.clean=git-lfs clean -- %f
 filter.lfs.smudge=git-lfs smudge -- %f
