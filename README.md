@@ -837,8 +837,8 @@ Hello, Docker Volume!
 ```
 PS C:\Users\lucidts1102> git --version ↩ git 설치 확인
 git version 2.56.1.windows.1
-PS C:\Users\lucidts1102> git config --global user.name "taesukpark" ↩
-PS C:\Users\lucidts1102> git config --global user.email "lucidts@hanmail.net" ↩
+PS C:\Users\lucidts1102> git config --global user.name "사용자명" ↩
+PS C:\Users\lucidts1102> git config --global user.email "사용자email" ↩
 PS C:\Users\lucidts1102> git config --global init.defaultBranch main ↩
 PS C:\Users\lucidts1102> git config --list
 diff.astextplain.textconv=astextplain
@@ -864,8 +864,8 @@ safe.directory=*
 safe.directory=*
 safe.directory=*
 safe.directory=*
-user.name=taesukpark
-user.email=lucidts@hanmail.net
+user.name=사용자명
+user.email=사용자email
 init.defaultbranch=main
 core.repositoryformatversion=0
 core.filemode=false
