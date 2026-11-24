@@ -558,7 +558,7 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
-![docker run hello-world 실행 결과](docs/docker-hello-world.png)
+![docker run hello-world 실행 결과](docs/logs/docker-hello-world.png)
 
 ```
 ② 컨테이너 실행 증거 추가 확인
