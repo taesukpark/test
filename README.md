@@ -3,7 +3,7 @@
 ## 1. 실행환경
 - OS : Ubuntu
 - Shell : b a s h 
-- Docker : 29.9.2
+- Docker : 2
 - Git : 2.56.0.windows.4
 
 ## 2. 수행 항목 체크LIST
@@ -163,8 +163,10 @@ PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩
 PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cat test.txt ↩
 PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$
 ```
+
 ## 4. 권한 실습 및 증거 기록
 최소 요구 : 파일 1개(test.txt), 디렉토리 1개(AllinONE)에 대해 권한 변경 실험을 수행
+
 ### 4-1. 권한을 확인/변경하는 명령을 수행
 ```
 • 권한 확인
@@ -239,7 +241,7 @@ mode of 'test.txt' changed from 0744 (rwxr--r--) to 0751 (rwxr-x--x)
 ```
 C:\Users\PC로그인ID>docker version ↩
 Client:
- Version:           29.9.2
+ Version:           2
  API version:       1.56
  Go version:        go1.26.10
  Git commit:        a82e528
@@ -249,7 +251,7 @@ Client:
 
 Server: Docker Desktop 4.97.0 (244584)
  Engine:
-  Version:          29.9.2
+  Version:          2
   API version:      1.56 (minimum version 1.40)
   Go version:       go1.26.10
   Git commit:       0367cbe
@@ -269,9 +271,9 @@ Server: Docker Desktop 4.97.0 (244584)
 ### 5-2. Docker 데몬 동작 여부 확인 결과를 기록한다. (docker info 또는 동등 점검)
 데몬이 **정상동작**일 경우 Client와 Server 정보가 모두 출력된다.
 ```
-C:\Users\PC로그인ID>docker version ↩
+C:\Users\PC로그인ID>docker version ↩ 클라이언트와 서버의 버전 정보를 함께 보여줌.
 Client:
- Version:           29.9.2
+ Version:           2
  API version:       1.56
  Go version:        go1.26.10
  Git commit:        a82e528
@@ -281,7 +283,7 @@ Client:
 
 Server: Docker Desktop 4.97.0 (244584)
  Engine:
-  Version:          29.9.2
+  Version:          2
   API version:      1.56 (minimum version 1.40)
   Go version:       go1.26.10
   Git commit:       0367cbe
@@ -298,9 +300,9 @@ Server: Docker Desktop 4.97.0 (244584)
   Version:          0.19.0
   GitCommit:        de40ad0
 
-C:\Users\PC로그인ID>docker info ↩
+C:\Users\PC로그인ID>docker info ↩  엔진 상태와 컨테이너·이미지 개수, 저장소 드라이버 등 시스템 정보를 확인할 때 유용
 Client:
- Version:    29.9.2
+ Version:    2
  Context:    desktop-linux
  Debug Mode: false
  Plugins:
@@ -356,7 +358,7 @@ Server:
   Paused: 0
   Stopped: 6
  Images: 5
- Server Version: 29.9.2
+ Server Version: 2
  Storage Driver: overlayfs
   driver-type: io.containerd.snapshotter.v1
  Logging Driver: local
@@ -439,7 +441,7 @@ ubuntu:latest                     6a06111c3b0a        163MB         45.9MB    U
 C:\Users\PC로그인ID> docker run -d --name welcome-to-docker -p 8088:80 nginx ↩
 b73b20e8498ed0e7e278e506306f0b84908a375c798f17be52643bfcd9ecbcc5
 
-② 컨테이너 중지전 목록 확인
+② 컨테이너 중지전 목록 확인(옵션 -a : 실행중인 컨테이너와 종료된 컨테이너 모두 포함한 목록 확인 가능)
 C:\Users\PC로그인ID> docker ps -a ↩ 모든 목록 확인중b73b20e8498e의 status가 Up상태임을 확인
 CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS                                     NAMES
 b73b20e8498e   nginx     "/docker-entrypoint.…"   7 minutes ago   Up 7 minutes                0.0.0.0:8088->80/tcp, [::]:8088->80/tcp   welcome-to-docker
