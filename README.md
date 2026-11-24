@@ -519,9 +519,18 @@ Ctrl+C ↩ test-container에서 빠져나오기
 
 
 ## 7. 컨테이너 실행 실습
+
+ < 명령어 동작 원리 >
+docker run hello-world는 내부적으로 다음 순서로 동작합니다.
+- Docker 클라이언트가 데몬에 요청을 보냅니다.
+- 로컬에 hello-world 이미지가 없으면 Docker Hub에서 pull 합니다.
+- 이미지로부터 컨테이너를 생성합니다.
+- 컨테이너가 메시지를 출력하고 곧바로 종료됩니다.
+
 ### 7-1. hello-world 실행 성공을 기록한다.
 ```
-C:\Users\PC로그인ID> docker run hello-world ↩
+① 
+PS C:\Users\PC로그인ID> docker run hello-world ↩
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 4f55086f7dd0: Pull complete
@@ -548,6 +557,18 @@ Share images, automate workflows, and more with a free Docker ID:
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
+
+② 컨테이너 실행 증거 추가 확인
+PS C:\Users\PC로그인ID> docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+26ac572150c6   hello-world   "/hello"   3 minutes ago   Exited (0) 3 minutes ago             nervous_kalam
+
+③ 로컬에 내려받은 이미지 확인
+PS C:\Users\PC로그인ID> docker images hello-world
+                                                                                                    i Info →   U  In Use
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   e2ac70e7319a       10.1kB             0B    U
+
 ```
 ### 7-2. Ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령(예: ls, echo) 수행 결과를 기록한다.
 
