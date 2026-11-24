@@ -530,7 +530,7 @@ docker run hello-world는 내부적으로 다음 순서로 동작합니다.
 ### 7-1. hello-world 실행 성공을 기록한다.
 ```
 ① 
-PS C:\Users\PC로그인ID> docker run hello-world ↩
+PS C:\Users\PC로그인ID> docker run hello-world ↩ 
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 4f55086f7dd0: Pull complete
@@ -557,7 +557,10 @@ Share images, automate workflows, and more with a free Docker ID:
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
+```
+![docker run hello-world 실행 결과](docs/docker-hello-world.png)
 
+```
 ② 컨테이너 실행 증거 추가 확인
 PS C:\Users\PC로그인ID> docker ps -a
 CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
