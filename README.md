@@ -116,7 +116,7 @@ PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩
  vscode-remote-wsl
  ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 파일 이동/이름변경(test1.txt 파일을 test3.txt로 내용 이동 및 파일명 변경)
-PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ mv test3.txt test1.txt ↩
+PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ mv test1.txt test3.txt ↩
 파일 이동/이름변경 상황 조회
 PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩
  AllinONE
@@ -887,7 +887,7 @@ Hello, Docker Volume!
 11-1. Git 사용자 정보/기본 브랜치 설정을 완료하고 git config --list
 ```
 PS C:\Users\PC로그인ID> git --version ↩ git 설치 확인
-git version 2.56.1.windows.1
+git version 2.56.0.windows.4
 PS C:\Users\PC로그인ID> git config --global user.name "사용자명" ↩
 PS C:\Users\PC로그인ID> git config --global user.email "사용자email" ↩
 PS C:\Users\PC로그인ID> git config --global init.defaultBranch main ↩
