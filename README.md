@@ -686,7 +686,7 @@ PS C:\Users\PC로그인ID\docker-web> docker build -t my-web . ↩
  => => writing image sha256:45728d00dd5db32ae2017bec1f2b91008ec4f93ca04384e3a74be2f948c0fac2                           0.0s
  => => naming to docker.io/library/my-web
 
-<img width="512" height="278" alt="image" src="https://github.com/user-attachments/assets/1387d5b7-4496-4559-90f0-006999f1a0b9" />
+<img width="768" height="417" alt="image" src="https://github.com/user-attachments/assets/1387d5b7-4496-4559-90f0-006999f1a0b9" />
 
 
 ```
