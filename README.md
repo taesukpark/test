@@ -96,10 +96,10 @@ PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ ls ↩
  ''$'\354\213\234\354\236\221'' '$'\353\251\224\353\211\264'
 복사된 파일과 원본 파일의 내용확인
 PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cat test1.txt
-��Welcome AllinOne!
+Welcome AllinOne!
 
 PC로그인ID@GNIA-C202-J06:/mnt/c/Users/PC로그인ID$ cat test2.txt
-��Welcome AllinOne!
+Welcome AllinOne!
 
 ```
 
