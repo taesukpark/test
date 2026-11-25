@@ -700,6 +700,8 @@ PS C:\Users\PC로그인ID\docker-web> docker build -t my-web . ↩
 
 ## 9. 포트 매핑 및 접속 증거
 
+> 컨테이너는 호스트와 분리된 네트워크 네임스페이스를 사용하므로, `-p 호스트포트:컨테이너포트` 포트 포워딩이 있어야 호스트의 localhost에서 접속할 수 있다.
+
 ```
 PC로그인ID@GNIA-C202-J06:~$ docker ps -a ↩
 CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS         PORTS                                     NAMES
@@ -924,6 +926,56 @@ core.bare=false
 :
 
 ```
+11-2. 원격(remote) 저장소 추가 및 연결 확인 (`git remote -v`)
+
+① 로컬 저장소 초기화 및 첫 커밋 (이미 저장소가 있으면 생략)
+```
+PS C:\Users\PC로그인ID\docker-web> git init ↩
+PS C:\Users\PC로그인ID\docker-web> git add . ↩
+PS C:\Users\PC로그인ID\docker-web> git commit -m "first commit" ↩
+PS C:\Users\PC로그인ID\docker-web> git branch -M main ↩ 기본 브랜치명을 main으로 통일
+```
+
+② 원격 저장소 추가 (GitHub에서 빈 저장소를 먼저 생성한 뒤 그 주소를 등록)
+```
+PS C:\Users\PC로그인ID\docker-web> git remote add origin https://github.com/사용자명/저장소명.git ↩
+```
+- `origin` : 원격 저장소에 붙이는 관례적인 별칭(이름)
+- 주소에는 토큰/비밀번호를 포함하지 않는다. 인증은 Git Credential Manager(`credential.helper=manager`)가 브라우저 로그인으로 처리한다.
+
+③ 원격 등록 확인 : `git remote -v`
+```
+PS C:\Users\PC로그인ID\docker-web> git remote -v ↩
+origin  https://github.com/사용자명/저장소명.git (fetch)
+origin  https://github.com/사용자명/저장소명.git (push)
+```
+- fetch(내려받기)용, push(올리기)용 주소가 각각 한 줄씩 출력되면 등록이 정상이다.
+- 아무것도 출력되지 않으면 원격이 등록되지 않은 것이므로 ②를 다시 수행한다.
+
+④ 연결 성공 확인 방법 (아래 3가지 중 하나 이상으로 증거를 남긴다)
+```
+(방법 1) 원격 서버에 실제로 접속되는지 확인
+PS C:\Users\PC로그인ID\docker-web> git ls-remote origin ↩
+(빈 저장소이면 출력이 없어도 오류 없이 끝나면 연결 성공, 인증/주소 오류이면 fatal 메시지 출력)
+
+(방법 2) 최초 push 후 추적 브랜치 연결 확인
+PS C:\Users\PC로그인ID\docker-web> git push -u origin main ↩
+branch 'main' set up to track 'origin/main'.
+
+(방법 3) 로컬 브랜치와 원격 브랜치의 연결 상태 확인
+PS C:\Users\PC로그인ID\docker-web> git status -sb ↩
+## main...origin/main
+PS C:\Users\PC로그인ID\docker-web> git branch -vv ↩
+* main 1a2b3c4 [origin/main] first commit
+```
+- `git push` 성공 후 GitHub 저장소 웹페이지에서 커밋이 보이면 최종 연동 성공이다.
+
+⑤ 자주 발생하는 오류와 조치
+| 오류 메시지 | 원인 | 조치 |
+|---|---|---|
+| `remote origin already exists` | 이미 origin이 등록됨 | `git remote set-url origin <새 주소>` 로 주소 수정 |
+| `repository not found` | 주소 오타 또는 접근 권한 없음 | `git remote -v`로 주소 재확인, 저장소 권한 확인 |
+| `Authentication failed` | 인증 정보 만료/오류 | 자격 증명 관리자에서 GitHub 항목 삭제 후 다시 로그인 |
 
 
 ## 12. 보안 및 개인정보 보호
@@ -932,6 +984,139 @@ core.bare=false
 기술문서/로그/스크린샷에 토큰, 비밀번호, 개인키, 인증 코드 등이 미포함되게 할 것
 ```
 
+
+## 13. 작업 디렉토리 구조 설계 기준 및 폴더 역할
+
+### 13-1. 설계 기준
+```
+1. **목적별 분리** : 터미널 실습 / Docker 이미지 빌드 / 바인드 마운트 / 증거 자료를 서로 다른 폴더로 나눠, 한 실습의 파일이 다른 실습에 섞이지 않게 한다.
+2. **빌드 컨텍스트 최소화** : `docker build .` 는 현재 폴더 전체를 Docker 데몬에 전달한다. 이미지에 필요한 파일(Dockerfile, index.html)만 전용 폴더에 두어 빌드 속도와 의도치 않은 파일 포함을 막는다.
+3. **실행 환경에 맞는 위치 선택** : 일반적으로 WSL에서 Windows 드라이브(`/mnt/c/...`)에 있는 파일은 `chmod` 권한 변경이 리눅스처럼 반영되지 않는다. 그래서 권한 실습(4번)은 WSL 홈(`~`, 리눅스 파일시스템)에서 수행했다.
+4. **증거와 실습물의 분리** : 스크린샷·로그는 `docs/logs/`에 모아 README에서 상대경로로 참조한다. 저장소를 어디로 옮겨도 링크가 깨지지 않는다.
+5. **이름만 보고 역할을 알 수 있게** : 폴더명을 `docker-web`, `my-folder`처럼 용도가 드러나게 짓는다.
+```
+
+### 13-2. 폴더 구조와 역할(설계 근거)
+```
+C:\Users\PC로그인ID\                (Windows 홈 - Docker Desktop, Git, VSCode 작업 위치)
+├─ docker-web\       Dockerfile + index.html  → 커스텀 이미지 빌드 전용 (8번)
+├─ my-folder\        index.html               → 바인드 마운트용 호스트 폴더 (10-1)
+├─ AllinONE\         test1.txt 등             → 터미널 기본 명령 실습 (3번)
+└─ practice\                                  → 자유 연습 공간 (실습 결과와 분리)
+
+/home/PC로그인ID/ (WSL Ubuntu 홈)
+└─ AllinONE/         test.txt, test1.txt      → chmod 권한 실습 (4번)
+
+(저장소 루트)
+├─ README.md                                   → 과제 보고서(실습 로그·설명)
+└─ docs/logs/                                  → 스크린샷·로그 증거 파일
+```
+| 폴더 | 역할 | 설계 근거 |
+|---|---|---|
+| `docker-web` | 이미지 빌드 컨텍스트 | 빌드에 필요한 파일만 두어 `COPY index.html .` 이 의도한 파일만 복사하게 함 |
+| `my-folder` | 바인드 마운트 원본 | 호스트에서 수정한 내용이 컨테이너에 즉시 반영되는지 확인하기 위한 독립 폴더 |
+| `AllinONE` (Windows) | 기본 명령 실습 | 생성/복사/삭제 실습이 다른 폴더에 영향을 주지 않도록 격리 |
+| `AllinONE` (WSL `~`) | 권한 실습 | 리눅스 파일시스템에서 `chmod`가 정확히 반영됨 |
+| `docs/logs` | 증거 보관 | 문서와 증거를 분리하고, README에서 상대경로로 참조 |
+
+
+## 14. 포트 충돌 진단 및 해제 절차
+
+**증상** : `docker run -p 8080:80 nginx` 실행 시 아래와 같은 오류가 나며 컨테이너가 시작되지 않는다.
+```
+docker: Error response from daemon: ... Bind for 0.0.0.0:8080 failed: port is already allocated
+(Windows에서는 "...bind: Only one usage of each socket address (protocol/network address/port) is normally permitted" 형태로 나오기도 함)
+```
+**원리** : 하나의 호스트 포트는 한 번에 한 프로세스만 점유(LISTEN)할 수 있다. 다른 컨테이너나 프로그램이 이미 8080을 쓰고 있으면 새 매핑은 실패한다.
+
+### 14-1. 단계별 진단·해제 순서
+**STEP 1. 누가 포트를 쓰는지 확인**
+
+① Docker 컨테이너가 점유 중인지 먼저 확인 (가장 흔한 원인)
+```
+docker ps --filter "publish=8080"
+(또는) docker ps -a  → PORTS 열에서 0.0.0.0:8080->80/tcp 를 찾는다
+```
+② 컨테이너가 아니라면 호스트 프로세스 확인
+```
+[Windows PowerShell / CMD]
+netstat -ano | findstr :8080                       → 맨 오른쪽 숫자가 PID
+Get-NetTCPConnection -LocalPort 8080               → OwningProcess 열이 PID
+tasklist /FI "PID eq <PID>"                        → PID로 프로그램 이름 확인
+
+[Linux / WSL Ubuntu]
+ss -ltnp | grep :8080                              → users:(("프로세스명",pid=<PID>,...))
+sudo lsof -i :8080                                 → COMMAND, PID 확인
+```
+**STEP 2. 점유 주체가 무엇인지 판단**
+- 내가 만든 컨테이너/프로그램이면 → STEP 3으로 진행
+- 모르는 프로세스(시스템 서비스 등)이면 → 종료하지 않고 STEP 4(다른 포트 사용)를 선택
+
+**STEP 3. 포트 해제**
+```
+[컨테이너가 점유]
+docker stop <컨테이너명>        → 정상 종료 (포트 해제됨)
+docker rm <컨테이너명>          → 필요 없으면 삭제
+
+[Windows 프로세스가 점유]
+Stop-Process -Id <PID>          (PowerShell)
+taskkill /PID <PID>             (CMD, 안 되면 /F 옵션은 마지막 수단)
+
+[Linux/WSL 프로세스가 점유]
+kill <PID>                      → 정상 종료 요청
+kill -9 <PID>                   → 종료되지 않을 때만 마지막 수단
+```
+**STEP 4. (대안) 포트를 바꿔서 실행** : 컨테이너 내부 포트(80)는 그대로 두고 호스트 포트만 바꾼다.
+```
+docker run -d --name test-container -p 8081:80 nginx
+```
+**STEP 5. 해제·재실행 결과 검증**
+```
+netstat -ano | findstr :8080        → 출력이 없으면 해제 완료
+docker ps                           → PORTS에 0.0.0.0:8080->80/tcp 표시 확인
+curl -I http://localhost:8080       → HTTP/1.1 200 OK 확인
+```
+> 주의 : PID를 확인하지 않고 종료하면 중요한 프로세스를 끌 수 있다. 반드시 STEP 1~2에서 프로세스 이름을 확인한 뒤 종료한다.
+
+
+
+## 15. 트러블슈팅 기록 (가설 → 확인 → 조치)
+
+각 문제를 **증상 → 가설 → 검증 명령 → 로그 → 판단 근거 → 조치 → 결과** 순서로 기록한다.
+(6-5의 스크린샷 2건을 아래 형식으로 정리한다. ※ 출력의 `<PID>` 등은 실제 값으로 교체해 기록)
+
+### 15-1. 사례 1 : 컨테이너 시작 실패 (포트 충돌)
+| 단계 | 내용 |
+|---|---|
+| 증상 | `docker run -d -p 8080:80 nginx` 실행 시 컨테이너가 생성되지 않음 |
+| 가설 | 호스트의 8080 포트를 이미 다른 컨테이너 또는 프로세스가 점유하고 있을 것이다 |
+| 검증 명령 | ① `docker ps -a` ② `netstat -ano \| findstr :8080` |
+| 로그 | ① `test-container ... 0.0.0.0:8080->80/tcp` 가 Up 상태로 조회됨 ② `TCP 0.0.0.0:8080 ... LISTENING <PID>` |
+| 판단 근거 | 8080이 LISTENING 상태이고 PID가 기존 컨테이너(Docker 백엔드)의 것이므로 가설이 맞다. 오류 메시지의 `port is already allocated` 와도 일치 |
+| 조치 | 기존 컨테이너 정지 `docker stop test-container` (또는 새 컨테이너를 `-p 8081:80` 으로 실행) |
+| 결과 | `docker ps` 에서 새 컨테이너 Up, `curl -I http://localhost:8080` (또는 8081) → `HTTP/1.1 200 OK` |
+
+### 15-2. 사례 2 : 컨테이너는 Up인데 localhost 접속 불가 (포트 매핑 누락)
+| 단계 | 내용 |
+|---|---|
+| 증상 | 컨테이너 상태는 Up인데 `http://localhost:8080` 접속이 거부됨 |
+| 가설 | `-p` 옵션 없이 실행해 호스트 포트와 컨테이너 포트가 연결(포워딩)되지 않았을 것이다 |
+| 검증 명령 | ① `docker ps` (PORTS 열 확인) ② `docker port <컨테이너명>` ③ `curl -v http://localhost:8080` |
+| 로그 | ① PORTS 열이 `80/tcp` 만 표시(호스트 포트 없음) ② 출력 없음 ③ `Connection refused` |
+| 판단 근거 | 컨테이너는 별도 네트워크 네임스페이스에 있어 `0.0.0.0:8080->` 형태의 매핑이 없으면 호스트에서 도달할 수 없다 |
+| 조치 | `docker rm -f <컨테이너명>` 후 `docker run -d -p 8080:80 --name <컨테이너명> nginx` 로 재실행 |
+| 결과 | PORTS 열에 `0.0.0.0:8080->80/tcp` 표시, `curl -v` 에서 `HTTP/1.1 200 OK` 확인 (9번 증거 참조) |
+
+### 15-3. 기록 템플릿 (새 문제 발생 시)
+```
+1) 증상  : 어떤 명령에서 어떤 오류가 났는가 (오류 메시지 그대로)
+2) 가설  : 원인이라고 추정한 것 (한 번에 하나)
+3) 검증  : 가설을 확인하는 명령
+4) 로그  : 검증 명령의 실제 출력 (토큰·개인정보 제거)
+5) 판단  : 출력의 어느 부분이 가설을 지지/반박하는가
+6) 조치  : 수행한 해결 명령
+7) 결과  : 조치 후 재확인 명령과 정상 출력
+```
 
 
 ## ** 과제를 마치면서...
@@ -949,6 +1134,26 @@ core.bare=false
 ~ (물결표) — 홈 폴더
 ```
 
+### <절대경로·상대경로 사용 사례와 선택 기준>
+```
+절대경로 : 루트(/)나 드라이브(C:\)부터 시작하는 전체 경로  예) /mnt/c/Users/PC로그인ID/my-folder
+상대경로 : 현재 위치(.)를 기준으로 하는 경로              예) ./docker-web, ../AllinONE
+```
+| 구분 | 이럴 때 사용 | 이번 과제의 사례 |
+|---|---|---|
+| 절대경로 | 실행 위치와 상관없이 항상 같은 대상을 가리켜야 할 때 | `docker run -v /호스트/절대경로:/컨테이너/경로` (바인드 마운트는 호스트 경로를 절대경로로 지정해야 함, 10-1) |
+| 절대경로 | 다른 폴더에 있다가 특정 위치로 한 번에 이동할 때 | `cd /mnt/c/Users/PC로그인ID` |
+| 절대경로 | 예약 작업·서비스처럼 실행 위치를 보장할 수 없을 때 | cron, 시스템 서비스 설정 |
+| 상대경로 | 프로젝트 안에서 폴더를 옮겨도 동작해야 할 때 | `COPY index.html .` (Dockerfile은 빌드 컨텍스트 기준 상대경로), `docker build -t my-web .` |
+| 상대경로 | 현재 위치 근처로 짧게 이동할 때 | `cd ..` (상위 폴더), `cd AllinONE` (하위 폴더) |
+| 상대경로 | 문서/저장소 안의 파일을 참조할 때 | `![결과](docs/logs/docker-hello-world.png)` (저장소를 clone해도 링크 유지) |
+
+**선택 기준 요약**
+1. 위치가 **고정**이고 어디서 실행하든 같은 대상이어야 하면 → **절대경로**
+2. 프로젝트/저장소가 **다른 PC·폴더로 옮겨져도** 동작해야 하면 → **상대경로**
+3. 홈 기준은 `~`를 쓰면 사용자명이 바뀌어도 이식성이 있다.
+4. 절대경로는 환경(사용자명, 드라이브)에 종속되므로 공유하는 문서·스크립트에는 가급적 상대경로를 쓴다.
+5. 헷갈리면 `pwd`로 현재 위치를 먼저 확인한다.
 
 ### <파일 권한의 의미(r/w/x)와 755, 644 같은 표기가 어떤 규칙으로 해석되는지 설명>
 --> 4. 권한 실습 및 증거 기록 참고
@@ -971,6 +1176,7 @@ x : 실행 권한(1)
 --> 9. 포트 매핑 및 접속 증거 참고
 ```
 Docker 컨테이너는 독립된 네트워크에 있어 기본적으로 외부에서 접근할 수 없으므로,
+- (네임스페이스 관점) 컨테이너는 리눅스 네트워크 네임스페이스(network namespace)로 호스트와 격리되어 자신만의 IP·네트워크 인터페이스·포트 공간을 가지므로, 컨테이너 안에서 80번 포트를 열어도 호스트의 localhost에서는 보이지 않음. 따라서 `-p 호스트포트:컨테이너포트`로 두 네임스페이스 사이에 포트 포워딩(DNAT)을 설정해야 호스트에서 컨테이너로 접속 가능
 - 포트 매핑으로 호스트의 특정 포트와 컨테이너의 포트를 연결해야 외부 접속 가능
 - 지정한 포트만 선택적으로 외부와 연결하여 필요한 서비스만 열어 보안성 향상
 - 서로 다른 호스트 포트에 같은 컨테이너 포트를 사용하는 서비스도 충돌없이 운영 가능
