@@ -559,10 +559,7 @@ Share images, automate workflows, and more with a free Docker ID:
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
-```
-![docker run hello-world 실행 결과](docs/logs/docker-hello-world.png)
 
-```
 ② 컨테이너 실행 증거 추가 확인
 PS C:\Users\PC로그인ID> docker ps -a
 CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
@@ -650,9 +647,6 @@ Mode                 LastWriteTime         Length Name
 -a----      2026-11-23   오전 5:47              0 Dockerfile
 -a----      2026-11-23   오전 5:45             60 index.html
 ```
-
-<img width="130" height="73" alt="image" src="https://github.com/user-attachments/assets/0f2d66fd-ffea-4a03-be42-a61c3bd39e64" />
-
 
 ```
 PS C:\Users\PC로그인ID\docker-web> docker build -t my-web . ↩
