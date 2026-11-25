@@ -761,7 +761,7 @@ security features and capabilities please refer to
 
 ### 10-1. 바인드 마운트 : 실행명령 + 호스트 변경 전/후 비교
 
-<img width="487" height="207" alt="image" src="https://github.com/user-attachments/assets/b7621c6c-4812-45a5-84c5-e97fbc5567fa" />
+<img width="974" height="414" alt="image" src="https://github.com/user-attachments/assets/b7621c6c-4812-45a5-84c5-e97fbc5567fa" />
 
 
 ① 내 컴퓨터에 폴더와 파일 생성
